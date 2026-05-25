@@ -90,5 +90,5 @@ Builds:
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
-CurrentVersion: '2.0.0'
-CurrentVersionCode: 20
+CurrentVersion: '12.1.0'
+CurrentVersionCode: 1210

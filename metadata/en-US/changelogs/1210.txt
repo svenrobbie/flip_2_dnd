@@ -1,0 +1,6 @@
+* Updated to Material 3 Expressive design system
+* Added dynamic surface container hierarchy for better depth
+* New centralized shape system with consistent rounded corners
+* Added 8dp spacing system for consistent layouts
+* Updated typography with Plus Jakarta Sans expressive weights
+* Expanded color tokens for full Material You compatibility
