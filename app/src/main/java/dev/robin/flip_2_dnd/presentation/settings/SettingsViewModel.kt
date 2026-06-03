@@ -94,7 +94,7 @@ class SettingsViewModel @Inject constructor(
 	private val _dndOffVibration = MutableStateFlow(VibrationPattern.SINGLE_PULSE)
 	val dndOffVibration = _dndOffVibration.asStateFlow()
 
-	private val _flipSensitivity = MutableStateFlow(1f)
+	private val _flipSensitivity = MutableStateFlow(0.5f)
 	val flipSensitivity = _flipSensitivity.asStateFlow()
 
 	private val _hasSecureSettingsPermission = MutableStateFlow(false)

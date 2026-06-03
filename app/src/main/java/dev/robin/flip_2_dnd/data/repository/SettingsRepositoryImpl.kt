@@ -131,7 +131,7 @@ class SettingsRepositoryImpl @Inject constructor(
 			) ?: VibrationPattern.SINGLE_PULSE.name
 		)
 	)
-	private val flipSensitivity = MutableStateFlow(prefs.getFloat(KEY_FLIP_SENSITIVITY, 1f))
+	private val flipSensitivity = MutableStateFlow(prefs.getFloat(KEY_FLIP_SENSITIVITY, 0.5f))
 	private val dndOnCustomSoundUri = MutableStateFlow<String?>(prefs.getString(KEY_DND_ON_CUSTOM_SOUND_URI, null))
 	private val dndOffCustomSoundUri = MutableStateFlow<String?>(prefs.getString(KEY_DND_OFF_CUSTOM_SOUND_URI, null))
 	private val notificationsEnabled = MutableStateFlow(prefs.getBoolean(KEY_NOTIFICATIONS_ENABLED, true))

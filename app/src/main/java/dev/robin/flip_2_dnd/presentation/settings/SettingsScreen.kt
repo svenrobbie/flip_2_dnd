@@ -1044,7 +1044,7 @@ fun SettingsContent(
                         Slider(
                             value = sliderPosition,
                             onValueChange = { newSensitivity ->
-                                val steps = listOf(0f, 0.33f, 0.66f, 1f)
+                                val steps = listOf(0f, 0.17f, 0.33f, 0.5f, 0.67f, 0.83f, 1f)
                                 val nearestStep =
                                     steps.minByOrNull { kotlin.math.abs(it - newSensitivity) } ?: newSensitivity
                                 sliderPosition = nearestStep
@@ -1053,7 +1053,7 @@ fun SettingsContent(
                                 viewModel.setFlipSensitivity(sliderPosition)
                             },
                             modifier = Modifier.width(200.dp),
-                            steps = 2,
+                            steps = 6,
                         )
                     },
                 )
