@@ -1,0 +1,6 @@
+* Tightened flip sensitivity for more reliable detection
+* Finer sensitivity slider with 7 steps for precise control
+* Modernized app icon with Material 3 silhouette design
+* Added Android 13+ themed icon support
+* Updated widget and Quick Settings tile with DND bell icons
+* Switched launcher icon to crisp vector drawables
