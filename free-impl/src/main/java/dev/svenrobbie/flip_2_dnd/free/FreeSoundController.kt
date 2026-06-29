@@ -1,19 +1,17 @@
-package dev.robin.flip_2_dnd.free
+package dev.svenrobbie.flip_2_dnd.free
 
 import android.content.Context
 import android.media.MediaPlayer
 import android.net.Uri
 import android.util.Log
-import dev.robin.flip_2_dnd.core.SoundController
+import dev.svenrobbie.flip_2_dnd.core.SoundController
 
 class FreeSoundController(private val context: android.content.Context) : SoundController {
     private val TAG = "FreeSoundController"
     private var mediaPlayer: MediaPlayer? = null
 
-    override fun playSound(sound: dev.robin.flip_2_dnd.core.Sound, uri: String?, volume: Float, useCustomVolume: Boolean) {
-        if (sound == dev.robin.flip_2_dnd.core.Sound.NONE) return
-
-        if (sound == dev.robin.flip_2_dnd.core.Sound.CUSTOM) return // Free version does not support custom sounds
+    override fun playSound(sound: dev.svenrobbie.flip_2_dnd.core.Sound, uri: String?, volume: Float, useCustomVolume: Boolean) {
+        if (sound == dev.svenrobbie.flip_2_dnd.core.Sound.NONE) return
 
         try {
             mediaPlayer?.release()
@@ -26,7 +24,6 @@ class FreeSoundController(private val context: android.content.Context) : SoundC
 
         var player: MediaPlayer? = null
         try {
-            // setUsage to Alarm to allow sound even if DND is active
             val attributes = android.media.AudioAttributes.Builder()
                 .setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION)
                 .setUsage(android.media.AudioAttributes.USAGE_ALARM)
@@ -37,12 +34,20 @@ class FreeSoundController(private val context: android.content.Context) : SoundC
             }
 
             when (sound) {
-                dev.robin.flip_2_dnd.core.Sound.SYSTEM_DEFAULT -> {
+                dev.svenrobbie.flip_2_dnd.core.Sound.SYSTEM_DEFAULT -> {
                     val notification = android.media.RingtoneManager.getDefaultUri(android.media.RingtoneManager.TYPE_NOTIFICATION)
                     player.setDataSource(context, notification)
                 }
+                dev.svenrobbie.flip_2_dnd.core.Sound.CUSTOM -> {
+                    if (uri != null) {
+                        player.setDataSource(context, Uri.parse(uri))
+                    } else {
+                        Log.w(TAG, "Custom sound selected but no URI provided")
+                        player.release()
+                        return
+                    }
+                }
                 else -> {
-                    // Here we use AssetFileDescriptor to be able to apply the attributes before preparing...
                     context.resources.openRawResourceFd(sound.soundResId).use { afd ->
                         player.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
                     }
@@ -64,7 +69,6 @@ class FreeSoundController(private val context: android.content.Context) : SoundC
 
         } catch (e: Exception) {
             Log.e(TAG, "Error playing sound: ${e.message}")
-            // It's good practice to release the player if something went wrong during the loading process...
             player?.release()
             player = null
         }
@@ -73,7 +77,7 @@ class FreeSoundController(private val context: android.content.Context) : SoundC
         }
     }
 
-    override fun previewSound(sound: dev.robin.flip_2_dnd.core.Sound, uri: String?, volume: Float, useCustomVolume: Boolean) {
+    override fun previewSound(sound: dev.svenrobbie.flip_2_dnd.core.Sound, uri: String?, volume: Float, useCustomVolume: Boolean) {
         playSound(sound, uri, volume, useCustomVolume)
     }
 
