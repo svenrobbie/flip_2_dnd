@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -92,11 +93,10 @@ class DndRepositoryImpl @Inject constructor(
 				}
 				notificationManager.setInterruptionFilter(newFilter)
 				Log.d("DndRepository", "DND state changed to: $enabled with filter $newFilter")
-                
-                // Log history for DND mode
-                CoroutineScope(Dispatchers.IO).launch {
-                    historyRepository.addHistory(enabled, newFilter)
-                }
+
+				withContext(Dispatchers.IO) {
+					historyRepository.addHistory(enabled, newFilter)
+				}
 			} catch (e: Exception) {
 				Log.e("DndRepository", "Error setting DND state", e)
 			}
@@ -111,20 +111,19 @@ class DndRepositoryImpl @Inject constructor(
 					val targetMode = settingsRepository.getRingerMode().first().value
 					audioManager.ringerMode = targetMode
 					Log.d("DndRepository", "Ringer mode changed from $currentMode to $targetMode")
-                    
-                    // Log history for Ringer mode (using 0 or specific int for ringer)
-                    CoroutineScope(Dispatchers.IO).launch {
-                        historyRepository.addHistory(true, targetMode)
-                    }
+
+					withContext(Dispatchers.IO) {
+						historyRepository.addHistory(true, targetMode)
+					}
 				} else {
 					// Restore previous mode
 					val restoredMode = settingsRepository.getPreviousRingerMode().first()
 					audioManager.ringerMode = restoredMode
 					Log.d("DndRepository", "Ringer mode restored to: $restoredMode")
-                    
-                    CoroutineScope(Dispatchers.IO).launch {
-                        historyRepository.addHistory(false, restoredMode)
-                    }
+
+					withContext(Dispatchers.IO) {
+						historyRepository.addHistory(false, restoredMode)
+					}
 				}
 			} catch (e: Exception) {
 				Log.e("DndRepository", "Error setting Ringer mode", e)

@@ -16,11 +16,14 @@ import dev.svenrobbie.flip_2_dnd.core.SettingsRepository
 import dev.svenrobbie.flip_2_dnd.core.DndRepository
 import dev.svenrobbie.flip_2_dnd.core.FlashlightPattern
 import dev.svenrobbie.flip_2_dnd.core.VibrationPattern
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private const val TAG = "DndService"
 
@@ -71,8 +74,9 @@ class DndService(
 	}
 
 	init {
-		// Update local state flows for UI sync
-		updateDndStatus()
+		CoroutineScope(Dispatchers.Main).launch {
+			updateDndStatus()
+		}
 		try {
 			cameraManager.registerTorchCallback(torchCallback, null)
 		} catch (e: Exception) {
@@ -88,79 +92,71 @@ class DndService(
 		}
 	}
 
-	private fun vibrate(pattern: LongArray) {
-		runBlocking {
-			val isVibrationEnabled = settingsRepository.getVibrationEnabled().first()
-			Log.d(
-				TAG,
-				"Vibration check: enabled=$isVibrationEnabled, pattern=${pattern.contentToString()}"
-			)
+	private suspend fun vibrate(pattern: LongArray) = withContext(Dispatchers.IO) {
+		val isVibrationEnabled = settingsRepository.getVibrationEnabled().first()
+		Log.d(
+			TAG,
+			"Vibration check: enabled=$isVibrationEnabled, pattern=${pattern.contentToString()}"
+		)
 
-			if (!isVibrationEnabled) {
-				Log.w(TAG, "Vibration is disabled. Skipping vibration.")
-				return@runBlocking
+		if (!isVibrationEnabled) {
+			Log.w(TAG, "Vibration is disabled. Skipping vibration.")
+			return@withContext
+		}
+
+		val scheduleEnabled = settingsRepository.getVibrationScheduleEnabled().first()
+		if (scheduleEnabled) {
+			val startTime = settingsRepository.getVibrationScheduleStartTime().first()
+			val endTime = settingsRepository.getVibrationScheduleEndTime().first()
+			val days = settingsRepository.getVibrationScheduleDays().first()
+			if (!isWithinSchedule(startTime, endTime, days)) {
+				Log.d(TAG, "Current time is outside vibration schedule. Skipping vibration.")
+				return@withContext
+			}
+		}
+
+		try {
+			val useCustomVibration = settingsRepository.getUseCustomVibration().first()
+			val customStrength = if (useCustomVibration) {
+				settingsRepository.getCustomVibrationStrength().first()
+			} else {
+				1.0f
 			}
 
-			// Check vibration schedule
-			val scheduleEnabled = settingsRepository.getVibrationScheduleEnabled().first()
-			if (scheduleEnabled) {
-				val startTime = settingsRepository.getVibrationScheduleStartTime().first()
-				val endTime = settingsRepository.getVibrationScheduleEndTime().first()
-				val days = settingsRepository.getVibrationScheduleDays().first()
-				if (!isWithinSchedule(startTime, endTime, days)) {
-					Log.d(TAG, "Current time is outside vibration schedule. Skipping vibration.")
-					return@runBlocking
-				}
-			}
-
-			try {
-				val useCustomVibration = settingsRepository.getUseCustomVibration().first()
-				val customStrength = if (useCustomVibration) {
-					settingsRepository.getCustomVibrationStrength().first()
-				} else {
-					1.0f
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+				val baseAmplitude = (255 * customStrength).toInt().coerceIn(1, 255)
+				val amplitudes = IntArray(pattern.size) { index ->
+					if (index % 2 == 0) 0 else baseAmplitude
 				}
 
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-					val baseAmplitude = (255 * customStrength).toInt().coerceIn(1, 255)
-					val amplitudes = IntArray(pattern.size) { index ->
-						// Ensure zero amplitude for timing intervals and full amplitude for vibration periods
-						if (index % 2 == 0) 0 else baseAmplitude
-					}
-					
-					// Adjust timing to ensure precise vibration pattern
-					val adjustedPattern = pattern.map { duration ->
-						// Ensure minimum duration for better perception
-						duration.coerceAtLeast(50L)
-					}.toLongArray()
-					
-					Log.d(TAG, "Creating waveform vibration with amplitude: $baseAmplitude and pattern: ${adjustedPattern.contentToString()}")
-					vibrator.vibrate(VibrationEffect.createWaveform(adjustedPattern, amplitudes, -1))
-				} else {
-					Log.d(TAG, "Using deprecated vibration method")
-					@Suppress("DEPRECATION")
-					vibrator.vibrate(pattern, -1)
-				}
-			} catch (e: Exception) {
-				Log.e(TAG, "Error during vibration: ${e.message}", e)
+				val adjustedPattern = pattern.map { duration ->
+					duration.coerceAtLeast(50L)
+				}.toLongArray()
+
+				Log.d(TAG, "Creating waveform vibration with amplitude: $baseAmplitude and pattern: ${adjustedPattern.contentToString()}")
+				vibrator.vibrate(VibrationEffect.createWaveform(adjustedPattern, amplitudes, -1))
+			} else {
+				Log.d(TAG, "Using deprecated vibration method")
+				@Suppress("DEPRECATION")
+				vibrator.vibrate(pattern, -1)
 			}
+		} catch (e: Exception) {
+			Log.e(TAG, "Error during vibration: ${e.message}", e)
 		}
 	}
 
-    private fun playSound(isEnabled: Boolean) {
-        runBlocking {
-            val scheduleEnabled = settingsRepository.getSoundScheduleEnabled().first()
-            if (scheduleEnabled) {
-                val startTime = settingsRepository.getSoundScheduleStartTime().first()
-                val endTime = settingsRepository.getSoundScheduleEndTime().first()
-                val days = settingsRepository.getSoundScheduleDays().first()
-                if (!isWithinSchedule(startTime, endTime, days)) {
-                    Log.d(TAG, "Current time is outside sound schedule. Skipping sound.")
-                    return@runBlocking
-                }
+    private suspend fun playSound(isEnabled: Boolean) = withContext(Dispatchers.IO) {
+        val scheduleEnabled = settingsRepository.getSoundScheduleEnabled().first()
+        if (scheduleEnabled) {
+            val startTime = settingsRepository.getSoundScheduleStartTime().first()
+            val endTime = settingsRepository.getSoundScheduleEndTime().first()
+            val days = settingsRepository.getSoundScheduleDays().first()
+            if (!isWithinSchedule(startTime, endTime, days)) {
+                Log.d(TAG, "Current time is outside sound schedule. Skipping sound.")
+                return@withContext
             }
-            soundService.playDndSound(isEnabled)
         }
+        soundService.playDndSound(isEnabled)
     }
 
     private fun checkDndPermission(): Boolean {
@@ -176,62 +172,48 @@ class DndService(
         context.startActivity(intent)
     }
 
-    fun toggleDnd() {
+    suspend fun toggleDnd() {
         try {
-            val isCurrentlyActivated = runBlocking { dndRepository.isActivated().first() }
+            val isCurrentlyActivated = dndRepository.isActivated().first()
             val willBeActivated = !isCurrentlyActivated
 
-            // Play feedback BEFORE setting the filter/ringer
             playSound(willBeActivated)
 
-            // Get the appropriate vibration pattern from settings
-            runBlocking {
-                val pattern = if (willBeActivated) {
-                    settingsRepository.getDndOnVibration().first()
-                } else {
-                    settingsRepository.getDndOffVibration().first()
-                }
-                
-                val timings = if (pattern == VibrationPattern.NONE) {
-                    longArrayOf()
-                } else {
-                    pattern.pattern
-                }
-                
-                if (timings.isNotEmpty()) {
-                    vibrate(timings)
-                }
+            val pattern = if (willBeActivated) {
+                settingsRepository.getDndOnVibration().first()
+            } else {
+                settingsRepository.getDndOffVibration().first()
             }
 
-            // Get the appropriate flashlight pattern from settings
-            runBlocking {
-                val flashlightPattern = if (willBeActivated) {
-                    settingsRepository.getDndOnFlashlightPattern().first()
-                } else {
-                    settingsRepository.getDndOffFlashlightPattern().first()
-                }
-                flashFlashlight(flashlightPattern)
+            val timings = if (pattern == VibrationPattern.NONE) {
+                longArrayOf()
+            } else {
+                pattern.pattern
             }
 
-            // Handle delay for Total Silence DND if applicable
-            val activationMode = runBlocking { settingsRepository.getActivationMode().first() }
-            val dndMode = runBlocking { settingsRepository.getDndMode().first() }
-            
-            if (willBeActivated && 
-                activationMode == dev.svenrobbie.flip_2_dnd.core.ActivationMode.DND && 
+            if (timings.isNotEmpty()) {
+                vibrate(timings)
+            }
+
+            val flashlightPattern = if (willBeActivated) {
+                settingsRepository.getDndOnFlashlightPattern().first()
+            } else {
+                settingsRepository.getDndOffFlashlightPattern().first()
+            }
+            flashFlashlight(flashlightPattern)
+
+            val activationMode = settingsRepository.getActivationMode().first()
+            val dndMode = settingsRepository.getDndMode().first()
+
+            if (willBeActivated &&
+                activationMode == dev.svenrobbie.flip_2_dnd.core.ActivationMode.DND &&
                 dndMode == dev.svenrobbie.flip_2_dnd.core.DndMode.TOTAL_SILENCE) {
-                runBlocking {
-                    Log.d(TAG, "Waiting 2 seconds before setting Total Silence DND")
-                    delay(2000)
-                }
+                Log.d(TAG, "Waiting 2 seconds before setting Total Silence DND")
+                delay(2000)
             }
 
-            // Now set the activation state in the repository
-            runBlocking {
-                dndRepository.setActivated(willBeActivated)
-            }
+            dndRepository.setActivated(willBeActivated)
 
-            // Update local state flows for UI sync
             _isDndEnabled.value = willBeActivated
             _isAppEnabledDnd.value = willBeActivated
 
@@ -240,10 +222,10 @@ class DndService(
         }
     }
 
-    fun updateDndStatus() {
+    suspend fun updateDndStatus() {
         try {
-            val activationMode = runBlocking { settingsRepository.getActivationMode().first() }
-            val isActivated = runBlocking { dndRepository.isActivated().first() }
+            val activationMode = settingsRepository.getActivationMode().first()
+            val isActivated = dndRepository.isActivated().first()
             
             if (activationMode == dev.svenrobbie.flip_2_dnd.core.ActivationMode.DND) {
                 val currentFilter = notificationManager.currentInterruptionFilter
@@ -269,21 +251,20 @@ class DndService(
         }
     }
 
-	private fun flashFlashlight(pattern: FlashlightPattern) {
+	private suspend fun flashFlashlight(pattern: FlashlightPattern) {
 		if (cameraId == null || pattern == FlashlightPattern.NONE) return
 
-		runBlocking {
+		withContext(Dispatchers.IO) {
 			val isFlashlightEnabled = settingsRepository.getFlashlightFeedbackEnabled().first()
-			if (!isFlashlightEnabled) return@runBlocking
+			if (!isFlashlightEnabled) return@withContext
 
 			val feedbackWithFlashlightOn = settingsRepository.getFeedbackWithFlashlightOn().first()
 			val flashController = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getFlashController(context)
 
 			if (flashController.shouldSkipFeedback(isFlashlightOn, feedbackWithFlashlightOn)) {
-				return@runBlocking
+				return@withContext
 			}
 
-			// Check schedule
 			val scheduleEnabled = settingsRepository.getFlashlightScheduleEnabled().first()
 			if (scheduleEnabled) {
 				val startTime = settingsRepository.getFlashlightScheduleStartTime().first()
@@ -292,7 +273,7 @@ class DndService(
 				val scheduleManager = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getScheduleManager(context)
 				if (!scheduleManager.isWithinSchedule(startTime, endTime, days)) {
 					Log.d(TAG, "Current time is outside flashlight schedule. Skipping flashlight blink.")
-					return@runBlocking
+					return@withContext
 				}
 			}
 

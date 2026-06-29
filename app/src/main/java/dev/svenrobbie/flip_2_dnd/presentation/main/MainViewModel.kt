@@ -10,7 +10,6 @@ import androidx.lifecycle.viewModelScope
 import dev.svenrobbie.flip_2_dnd.R
 import dev.svenrobbie.flip_2_dnd.core.PhoneOrientation
 import dev.svenrobbie.flip_2_dnd.core.DndRepository
-import dev.svenrobbie.flip_2_dnd.core.FeedbackRepository
 import dev.svenrobbie.flip_2_dnd.core.ScreenStateRepository
 import dev.svenrobbie.flip_2_dnd.core.SettingsRepository
 import dev.svenrobbie.flip_2_dnd.domain.usecase.GetOrientationUseCase
@@ -30,7 +29,6 @@ class MainViewModel @Inject constructor(
     private val toggleDndUseCase: ToggleDndUseCase,
     private val dndRepository: DndRepository,
     private val settingsRepository: SettingsRepository,
-    private val feedbackRepository: FeedbackRepository,
     private val screenStateRepository: ScreenStateRepository,
     @param:ApplicationContext private val context: Context
 ) : ViewModel() {

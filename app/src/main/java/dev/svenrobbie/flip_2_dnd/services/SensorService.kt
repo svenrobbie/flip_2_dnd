@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.cancel
 import kotlin.math.abs
 
 private const val TAG = "SensorService"
@@ -39,33 +39,20 @@ class SensorService(
   private var lastAccelReading = FloatArray(3)
   private var lastGyroReading = FloatArray(3)
   private var filteredAccel = FloatArray(3)
-  private val alpha = 0.15f // Smoothing factor for low-pass filter
+  private val alpha = 0.15f
   private var isProcessing = false
   private var _isRegistered = false
   val isRegistered: Boolean get() = _isRegistered
   private var sensitivity = 0.5f
-  private var highSensitivityMode = false
-  private var highSensitivityScheduleEnabled = false
-  private var highSensitivityScheduleStartTime = "22:00"
-  private var highSensitivityScheduleEndTime = "07:00"
-  private var highSensitivityScheduleDays = setOf(1, 2, 3, 4, 5, 6, 7)
 
-  // Scope to observe settings changes from SettingsRepository
   private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
   init {
-    // Bind high-sensitivity-related settings to local vars
-    scope.launch { settingsRepository.getHighSensitivityModeEnabled().collect { highSensitivityMode = it } }
-    scope.launch {
-      settingsRepository.getHighSensitivityScheduleEnabled().collect { highSensitivityScheduleEnabled = it }
-    }
-    scope.launch {
-      settingsRepository.getHighSensitivityScheduleStartTime().collect { highSensitivityScheduleStartTime = it }
-    }
-    scope.launch {
-      settingsRepository.getHighSensitivityScheduleEndTime().collect { highSensitivityScheduleEndTime = it }
-    }
-    scope.launch { settingsRepository.getHighSensitivityScheduleDays().collect { highSensitivityScheduleDays = it } }
+    scope.launch { settingsRepository.getFlipSensitivity().collect { sensitivity = it } }
+  }
+
+  fun cancel() {
+    scope.cancel()
   }
 
   private val sensorListener = object : SensorEventListener {
@@ -189,8 +176,4 @@ class SensorService(
     isProcessing = false
   }
 
-  private fun isWithinSchedule(startTime: String, endTime: String, days: Set<Int>): Boolean {
-    return dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getScheduleManager(context)
-      .isWithinSchedule(startTime, endTime, days)
-  }
 }

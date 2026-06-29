@@ -299,7 +299,7 @@ class FlipDetectorService : Service() {
         }
     }
 
-    private fun handleOrientationChange(orientation: PhoneOrientation, screenOff: Boolean) {
+    private suspend fun handleOrientationChange(orientation: PhoneOrientation, screenOff: Boolean) {
         try {
             Log.d(TAG, "Screen state: ${if (screenOff) "OFF" else "ON"}, Only when screen off: $onlyWhenScreenOff")
             Log.d(TAG, "Handling orientation change: $orientation")
@@ -440,6 +440,7 @@ class FlipDetectorService : Service() {
             
             // Stop sensor monitoring
             sensorService.stopMonitoring()
+            sensorService.cancel()
             
             // Cancel any pending orientation job
             orientationJob?.cancel()

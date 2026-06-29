@@ -4,8 +4,9 @@ import android.content.Context
 import android.content.Intent
 import dev.svenrobbie.flip_2_dnd.core.SettingsRepository
 import dev.svenrobbie.flip_2_dnd.core.Sound
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class SoundService(
     private val context: android.content.Context,
@@ -16,35 +17,32 @@ class SoundService(
         private const val TAG = "SoundService"
     }
 
-    fun playDndSound(isEnabled: Boolean) {
-        runBlocking {
-            val isSoundEnabled = settingsRepository.getSoundEnabled().first()
-            if (!isSoundEnabled) return@runBlocking
+    suspend fun playDndSound(isEnabled: Boolean) = withContext(Dispatchers.IO) {
+        val isSoundEnabled = settingsRepository.getSoundEnabled().first()
+        if (!isSoundEnabled) return@withContext
 
-            try {
-                // Get the appropriate sound and settings based on DND state
-                val sound = if (isEnabled) {
-                    settingsRepository.getDndOnSound().first()
-                } else {
-                    settingsRepository.getDndOffSound().first()
-                }
-
-                if (sound == Sound.NONE) return@runBlocking
-
-                val uri = if (isEnabled) {
-                    settingsRepository.getDndOnCustomSoundUri().first()
-                } else {
-                    settingsRepository.getDndOffCustomSoundUri().first()
-                }
-                
-                val volume = settingsRepository.getCustomVolume().first()
-                val useCustomVolume = settingsRepository.getUseCustomVolume().first()
-                
-                val soundController = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getSoundController(context)
-                soundController.playSound(sound, uri, volume, useCustomVolume)
-            } catch (e: Exception) {
-                android.util.Log.e(TAG, "Error playing sound: ${e.message}", e)
+        try {
+            val sound = if (isEnabled) {
+                settingsRepository.getDndOnSound().first()
+            } else {
+                settingsRepository.getDndOffSound().first()
             }
+
+            if (sound == Sound.NONE) return@withContext
+
+            val uri = if (isEnabled) {
+                settingsRepository.getDndOnCustomSoundUri().first()
+            } else {
+                settingsRepository.getDndOffCustomSoundUri().first()
+            }
+
+            val volume = settingsRepository.getCustomVolume().first()
+            val useCustomVolume = settingsRepository.getUseCustomVolume().first()
+
+            val soundController = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getSoundController(context)
+            soundController.playSound(sound, uri, volume, useCustomVolume)
+        } catch (e: Exception) {
+            android.util.Log.e(TAG, "Error playing sound: ${e.message}", e)
         }
     }
 
