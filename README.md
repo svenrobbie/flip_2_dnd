@@ -18,6 +18,47 @@ The code is MIT licensed — use it, share it, improve it.
 
 ---
 
+## 📋 What's Changed (Since the Fork)
+
+A summary of all improvements made in this fork beyond simply removing the paywall:
+
+### 🔋 v13.0.0 — Battery & Performance Overhaul
+
+- **Replaced polling with BroadcastReceiver**: `DndRepository` no longer polls every second — it listens for `ACTION_INTERRUPTION_FILTER_CHANGED` broadcasts instead.
+- **Reduced sensor sampling rate**: From `SENSOR_DELAY_UI` to `SENSOR_DELAY_NORMAL`, significantly lowering CPU wake-ups.
+- **Fixed wake lock leak**: `wakeLock.release()` was missing in `onDestroy()` — now properly released.
+- **Slashed service restarts**: From 52 down to 1 — only restarted when flip sensitivity actually changes.
+- **Removed duplicate receiver**: Consolidated redundant screen-state broadcast receivers.
+
+### ⚡ ANR & Coroutine Leak Fixes
+
+- **Live sensor sensitivity**: Now reads from settings in real-time instead of a hardcoded `0.5f`.
+- **Eliminated ANR**: Removed `runBlocking { delay(2000) }` that was blocking the main thread.
+- **Fixed coroutine scope leak**: `SensorService.cancel()` is now called in `onDestroy()`.
+- **Dead code removal**: Cleared out unused `highSensitivityMode` / `schedule` fields and collectors.
+- **runBlocking → withContext**: All blocking calls in `DndService` migrated to proper `suspend`/`withContext(IO)`.
+- **Suspend-friendly SoundService**: `playDndSound()` is now a `suspend` function.
+- **Cleaner coroutines**: Ad-hoc `CoroutineScope(IO).launch` replaced with `withContext(IO)`.
+- **Removed unused dependency**: `feedbackRepository` cleaned from `MainViewModel`.
+
+### 🏗️ Hilt Dependency Injection (ServiceLocator Removed)
+
+- **Full DI migration**: Replaced the static `ServiceLocator` singleton with proper Hilt `@Inject` / `@Provides`.
+- **No more static context references**: Each component gets its context through proper Hilt scoping (SingletonComponent, ServiceC).
+- **Better garbage collection**: Objects are no longer pinned by static references; they can be collected when no longer needed.
+- **Deleted `ServiceLocator.kt`**: The entire 54-line static locator is gone.
+
+### 🔓 v12.2.0 — Freedom Edition
+
+- All premium features unlocked for everyone
+- Package renamed to `dev.svenrobbie.flip_2_dnd`
+- All paywall and Pro references removed from code, UI, and strings
+- Flash controller migrated to coroutines
+- Custom sound support via file picker
+- Battery saver toggle via `Settings.Global`
+
+---
+
 ## 🚀 Features (All Unlocked)
 
 - 🔄 **Intelligent Flip Detection**: Automatically toggles DND mode based on phone orientation.
