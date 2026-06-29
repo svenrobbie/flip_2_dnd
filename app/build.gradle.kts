@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-	namespace = "dev.robin.flip_2_dnd"
+	namespace = "dev.svenrobbie.flip_2_dnd"
 	compileSdk = 36
 
 	defaultConfig {
-		applicationId = "dev.robin.flip_2_dnd"
+		applicationId = "dev.svenrobbie.flip_2_dnd"
 		minSdk = 23
 		targetSdk = 35
 		versionCode = 1211
@@ -20,15 +20,7 @@ android {
 			useSupportLibrary = true
 		}
 
-		val isPro = findProject(":pro-impl") != null
-		if (isPro) {
-			applicationIdSuffix = ".pro"
-			versionNameSuffix = "-pro"
-			resValue("string", "app_name", "Flip 2 DND Pro")
-		} else {
-			versionNameSuffix = "-free"
-			resValue("string", "app_name", "Flip 2 DND")
-		}
+		resValue("string", "app_name", "Flip 2 DND")
 	}
 
 	lint {
@@ -98,8 +90,5 @@ dependencies {
 	ksp(libs.androidx.room.compiler)
 
 	implementation(project(":core"))
-	runtimeOnly(project(":free-impl"))
-	if (findProject(":pro-impl") != null) {
-		runtimeOnly(project(":pro-impl"))
-	}
+	implementation(project(":free-impl"))
 }

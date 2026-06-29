@@ -24,9 +24,4 @@ include(":app")
 include(":core")
 include(":free-impl")
 
-val proDir = file("../flip_2_dnd_pro")
-if (proDir.exists()) {
-    include(":pro-impl")
-    project(":pro-impl").projectDir = proDir
-}
  
