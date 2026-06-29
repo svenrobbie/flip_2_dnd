@@ -47,7 +47,7 @@ adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SET
 
 ## 📥 Installation
 
-Download the latest APK from the [Releases](https://github.com/YOUR_USERNAME/Flip_2_DND/releases) page.
+Download the latest APK from the [Releases](https://github.com/svenrobbie/Flip_2_DND/releases) page.
 
 ---
 
