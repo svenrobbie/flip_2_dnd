@@ -428,6 +428,8 @@ class FlipDetectorService : Service() {
         super.onDestroy()
         Log.d(TAG, "onDestroy: Cleaning up FlipDetectorService")
         try {
+            releaseWakeLock()
+
             // Unregister screen state receiver
             unregisterReceiver(screenStateReceiver)
             

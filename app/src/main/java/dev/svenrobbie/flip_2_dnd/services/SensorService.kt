@@ -113,7 +113,7 @@ class SensorService(
     success = success && sensorManager.registerListener(
       sensorListener,
       accelerometer,
-      SensorManager.SENSOR_DELAY_UI
+      SensorManager.SENSOR_DELAY_NORMAL
     )
     if (!success) {
       Log.e(TAG, "Failed to register accelerometer")
@@ -123,7 +123,7 @@ class SensorService(
     success = success && sensorManager.registerListener(
       sensorListener,
       gyroscope,
-      SensorManager.SENSOR_DELAY_UI
+      SensorManager.SENSOR_DELAY_NORMAL
     )
     if (!success) {
       Log.e(TAG, "Failed to register gyroscope")

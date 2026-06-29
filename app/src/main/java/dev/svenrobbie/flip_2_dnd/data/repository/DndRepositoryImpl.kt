@@ -1,8 +1,12 @@
 package dev.svenrobbie.flip_2_dnd.data.repository
 
 import android.app.NotificationManager
-import android.media.AudioManager
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.media.AudioManager
+import android.os.Build
 import android.util.Log
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.svenrobbie.flip_2_dnd.R
@@ -35,19 +39,31 @@ class DndRepositoryImpl @Inject constructor(
 		
 	private val _isActivated = MutableStateFlow(false)
 	private val _dndMode = MutableStateFlow(R.string.dnd_mode_all)
-	
-	private val dndStateUpdateJob: Job
+
+	private var pollingFallbackJob: Job? = null
+
+	private val dndStateReceiver = object : BroadcastReceiver() {
+		override fun onReceive(context: Context?, intent: Intent?) {
+			updateDndState()
+		}
+	}
 
 	init {
 		updateDndState()
-		// Start continuous monitoring of DND state
-		dndStateUpdateJob = startDndStateMonitoring()
+		startDndStateMonitoring()
 	}
 
-	private fun startDndStateMonitoring(): Job = CoroutineScope(Dispatchers.Default).launch {
-		while (isActive) {
-			updateDndState()
-			delay(1000) // Check every second
+	private fun startDndStateMonitoring() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+			val filter = IntentFilter(NotificationManager.ACTION_INTERRUPTION_FILTER_CHANGED)
+			context.registerReceiver(dndStateReceiver, filter)
+		} else {
+			pollingFallbackJob = CoroutineScope(Dispatchers.Default).launch {
+				while (isActive) {
+					updateDndState()
+					delay(30_000) // Check every 30 seconds as fallback for older APIs
+				}
+			}
 		}
 	}
 
@@ -178,8 +194,15 @@ class DndRepositoryImpl @Inject constructor(
 //            - Raw Filter: $currentFilter
 //        """.trimIndent())
 
-	// Ensure the monitoring job is cancelled when the repository is no longer used
 	override fun onCleared() {
-		dndStateUpdateJob.cancel()
+		try {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+				context.unregisterReceiver(dndStateReceiver)
+			} else {
+				pollingFallbackJob?.cancel()
+			}
+		} catch (e: Exception) {
+			Log.e("DndRepository", "Error during cleanup: ${e.message}")
+		}
 	}
 }
