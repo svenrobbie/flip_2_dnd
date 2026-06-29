@@ -124,31 +124,7 @@ fun DonationScreen(navController: NavController? = null) {
                 modifier = Modifier.fillMaxWidth(),
             )
 
-            Spacer(modifier = Modifier.height(48.dp))
-
-            // ASCII skull
-            Text(
-                text = """
-                    ██████████████████████████████████████
-                    ██                                ██
-                    ██   ╔═══╗╔═══╗╔═══╗╔═══╗╔═══╗    ██
-                    ██   ║╔═╗║║╔═╗║║╔══╝║╔═╗║║╔══╝    ██
-                    ██   ║╚═╝║║║║║║║╚══╗║╚═╝║║╚══╗    ██
-                    ██   ║╔╗╔╝║║║║║║╔══╝║╔╗╔╝║╔══╝    ██
-                    ██   ║║║╚╗║╚═╝║║╚══╗║║║╚╗║╚══╗    ██
-                    ██   ╚╝╚═╝╚═══╝╚═══╝╚╝╚═╝╚═══╝    ██
-                    ██                                ██
-                    ██████████████████████████████████████
-                """.trimIndent(),
-                fontFamily = FontFamily.Monospace,
-                color = dedsecGreen,
-                fontSize = 8.sp,
-                lineHeight = 8.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth(),
-            )
-
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(32.dp))
 
             Text(
                 text = "// UNLOCKED BY SVENROBBIE //",

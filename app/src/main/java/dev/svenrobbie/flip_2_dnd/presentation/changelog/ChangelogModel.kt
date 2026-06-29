@@ -10,6 +10,21 @@ data class ChangelogEntry(
 val changelogEntries =
   listOf(
     ChangelogEntry(
+      version = "v12.2.0",
+      emoji = "🔓",
+      changes =
+        listOf(
+          "🔓 All premium features unlocked for everyone",
+          "🏷️ Renamed package to dev.svenrobbie.flip_2_dnd",
+          "🖥️ Replaced donation screen with Freedom Edition credits",
+          "🧹 Removed all paywall and Pro references",
+          "⚡ Flash controller migrated to coroutines",
+          "📡 Improved proximity/media/headphone detection",
+          "🔊 Custom sound support via file picker",
+          "🔋 Battery saver toggle via Settings.Global",
+        ),
+    ),
+    ChangelogEntry(
       version = "v12.0.9",
       emoji = "🎨",
       changes =
