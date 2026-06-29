@@ -59,6 +59,7 @@ import android.content.ClipData
 import androidx.compose.ui.platform.ClipEntry
 import androidx.lifecycle.lifecycleScope
 import dev.svenrobbie.flip_2_dnd.core.SettingsRepository
+import dev.svenrobbie.flip_2_dnd.core.ProFeatureManager
 
 import dev.svenrobbie.flip_2_dnd.presentation.navigation.AppNavigation
 import dev.svenrobbie.flip_2_dnd.presentation.onboarding.OnboardingScreen
@@ -81,6 +82,9 @@ class MainActivity : ComponentActivity() {
 
   @Inject
   lateinit var settingsRepository: SettingsRepository
+
+  @Inject
+  lateinit var featureManager: ProFeatureManager
 
   private var turnScreenOff = false
 
@@ -113,7 +117,7 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 
     // Check for updates (Pro version only)
-    dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getFeatureManager(this).checkForUpdate(false)
+    featureManager.checkForUpdate(false)
 
     lifecycleScope.launch {
       turnScreenOff = settingsRepository.getTurnScreenOffEnabled().first()

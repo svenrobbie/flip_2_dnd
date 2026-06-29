@@ -97,7 +97,6 @@ import dev.svenrobbie.flip_2_dnd.core.ActivationMode
 import dev.svenrobbie.flip_2_dnd.core.DndMode
 import dev.svenrobbie.flip_2_dnd.core.FlashlightPattern
 import dev.svenrobbie.flip_2_dnd.core.RingerMode
-import dev.svenrobbie.flip_2_dnd.core.ServiceLocator
 import dev.svenrobbie.flip_2_dnd.core.Sound
 import dev.svenrobbie.flip_2_dnd.core.UpdateState
 import dev.svenrobbie.flip_2_dnd.core.VibrationPattern
@@ -845,9 +844,7 @@ fun SettingsContent(
                                             },
                                             onClick = {
                                                 if (sound == Sound.CUSTOM) {
-                                                    ServiceLocator
-                                                        .getSoundPicker(ctx)
-                                                        .launchPicker(ctx, true)
+                                                    viewModel.launchDndOnSoundPicker(ctx)
                                                 } else {
                                                     viewModel.setDndOnSound(sound)
                                                     viewModel.playSelectedSound(sound)
@@ -911,9 +908,7 @@ fun SettingsContent(
                                             },
                                             onClick = {
                                                 if (sound == Sound.CUSTOM) {
-                                                    ServiceLocator
-                                                        .getSoundPicker(ctx)
-                                                        .launchPicker(ctx, false)
+                                                    viewModel.launchDndOffSoundPicker(ctx)
                                                 } else {
                                                     viewModel.setDndOffSound(sound)
                                                     viewModel.playSelectedSound(sound, isForDndOn = false)

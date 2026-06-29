@@ -7,8 +7,24 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import dev.svenrobbie.flip_2_dnd.core.DetectionManager
+import dev.svenrobbie.flip_2_dnd.core.FlashController
+import dev.svenrobbie.flip_2_dnd.core.PowerController
+import dev.svenrobbie.flip_2_dnd.core.ProFeatureManager
+import dev.svenrobbie.flip_2_dnd.core.ScheduleManager
+import dev.svenrobbie.flip_2_dnd.core.SensorManagerPro
+import dev.svenrobbie.flip_2_dnd.core.SoundController
+import dev.svenrobbie.flip_2_dnd.core.SoundPicker
 import dev.svenrobbie.flip_2_dnd.data.local.AppDatabase
 import dev.svenrobbie.flip_2_dnd.data.local.dao.HistoryDao
+import dev.svenrobbie.flip_2_dnd.free.FreeDetectionManager
+import dev.svenrobbie.flip_2_dnd.free.FreeFlashController
+import dev.svenrobbie.flip_2_dnd.free.FreePowerController
+import dev.svenrobbie.flip_2_dnd.free.FreeProFeatures
+import dev.svenrobbie.flip_2_dnd.free.FreeScheduleManager
+import dev.svenrobbie.flip_2_dnd.free.FreeSensorManagerPro
+import dev.svenrobbie.flip_2_dnd.free.FreeSoundController
+import dev.svenrobbie.flip_2_dnd.free.FreeSoundPicker
 import javax.inject.Singleton
 
 @Module
@@ -31,43 +47,49 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSoundController(@ApplicationContext context: Context): dev.svenrobbie.flip_2_dnd.core.SoundController {
-        return dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getSoundController(context)
+    fun provideSoundController(@ApplicationContext context: Context): SoundController {
+        return FreeSoundController(context)
     }
 
     @Provides
     @Singleton
-    fun provideFlashController(@ApplicationContext context: Context): dev.svenrobbie.flip_2_dnd.core.FlashController {
-        return dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getFlashController(context)
+    fun provideFlashController(@ApplicationContext context: Context): FlashController {
+        return FreeFlashController(context)
     }
 
     @Provides
     @Singleton
-    fun providePowerController(@ApplicationContext context: Context): dev.svenrobbie.flip_2_dnd.core.PowerController {
-        return dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getPowerController(context)
+    fun providePowerController(@ApplicationContext context: Context): PowerController {
+        return FreePowerController(context)
     }
 
     @Provides
     @Singleton
-    fun provideScheduleManager(@ApplicationContext context: Context): dev.svenrobbie.flip_2_dnd.core.ScheduleManager {
-        return dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getScheduleManager(context)
+    fun provideScheduleManager(@ApplicationContext context: Context): ScheduleManager {
+        return FreeScheduleManager(context)
     }
 
     @Provides
     @Singleton
-    fun provideDetectionManager(@ApplicationContext context: Context): dev.svenrobbie.flip_2_dnd.core.DetectionManager {
-        return dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getDetectionManager(context)
+    fun provideDetectionManager(@ApplicationContext context: Context): DetectionManager {
+        return FreeDetectionManager(context)
     }
 
     @Provides
     @Singleton
-    fun provideSoundPicker(@ApplicationContext context: Context): dev.svenrobbie.flip_2_dnd.core.SoundPicker {
-        return dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getSoundPicker(context)
+    fun provideSoundPicker(@ApplicationContext context: Context): SoundPicker {
+        return FreeSoundPicker(context)
     }
 
     @Provides
     @Singleton
-    fun provideFeatureManager(@ApplicationContext context: Context): dev.svenrobbie.flip_2_dnd.core.ProFeatureManager {
-        return dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getFeatureManager(context)
+    fun provideFeatureManager(@ApplicationContext context: Context): ProFeatureManager {
+        return FreeProFeatures(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSensorManagerPro(@ApplicationContext context: Context): SensorManagerPro {
+        return FreeSensorManagerPro(context)
     }
 }

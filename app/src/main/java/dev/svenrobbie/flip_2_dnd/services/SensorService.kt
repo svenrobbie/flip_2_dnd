@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
 import dev.svenrobbie.flip_2_dnd.core.PhoneOrientation
+import dev.svenrobbie.flip_2_dnd.core.SensorManagerPro
 import dev.svenrobbie.flip_2_dnd.core.SettingsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +22,8 @@ private const val TAG = "SensorService"
 
 class SensorService(
   private val context: Context,
-  private val settingsRepository: SettingsRepository
+  private val settingsRepository: SettingsRepository,
+  private val sensorManagerPro: SensorManagerPro
 ) {
   private val sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
   private val accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
@@ -140,10 +142,6 @@ class SensorService(
     val y = lastAccelReading[1]
     val z = lastAccelReading[2]
 
-    // Adjust thresholds based on sensitivity
-    val sensorManagerPro = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getSensorManagerPro(context)
-
-    // High sensitivity is always ON now; thresholds use high sensitivity values directly
     val thresholds = sensorManagerPro.getOrientationThresholds(sensitivity)
 
     // Check if the phone is relatively stable (not in motion)

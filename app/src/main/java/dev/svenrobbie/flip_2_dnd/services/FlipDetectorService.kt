@@ -17,6 +17,12 @@ import dev.svenrobbie.flip_2_dnd.R
 import dev.svenrobbie.flip_2_dnd.core.PhoneOrientation
 import dev.svenrobbie.flip_2_dnd.core.DndRepository
 import dev.svenrobbie.flip_2_dnd.core.SettingsRepository
+import dev.svenrobbie.flip_2_dnd.core.SensorManagerPro
+import dev.svenrobbie.flip_2_dnd.core.FlashController
+import dev.svenrobbie.flip_2_dnd.core.ScheduleManager
+import dev.svenrobbie.flip_2_dnd.core.DetectionManager
+import dev.svenrobbie.flip_2_dnd.core.PowerController
+import dev.svenrobbie.flip_2_dnd.core.SoundController
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -41,6 +47,24 @@ class FlipDetectorService : Service() {
     
     @Inject
     lateinit var dndRepository: DndRepository
+
+    @Inject
+    lateinit var sensorManagerPro: SensorManagerPro
+
+    @Inject
+    lateinit var flashController: FlashController
+
+    @Inject
+    lateinit var scheduleManager: ScheduleManager
+
+    @Inject
+    lateinit var detectionManager: DetectionManager
+
+    @Inject
+    lateinit var powerController: PowerController
+
+    @Inject
+    lateinit var soundController: SoundController
     
     private val serviceScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     
@@ -151,8 +175,8 @@ class FlipDetectorService : Service() {
         Log.d(TAG, "onCreate: Initializing FlipDetectorService")
         
         try {
-            sensorService = SensorService(this, settingsRepository)
-            dndService = DndService(this, settingsRepository, dndRepository)
+            sensorService = SensorService(this, settingsRepository, sensorManagerPro)
+            dndService = DndService(this, settingsRepository, dndRepository, flashController, scheduleManager, soundController)
             // settingsRepository is now injected by Hilt
             powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
             cameraManager = getSystemService(Context.CAMERA_SERVICE) as android.hardware.camera2.CameraManager
@@ -188,7 +212,6 @@ class FlipDetectorService : Service() {
                     proximityDetectionEnabled = enabled
                     Log.d(TAG, "Settings updated - Proximity detection: $enabled")
                     
-                    val detectionManager = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getDetectionManager(this@FlipDetectorService)
                     if (enabled) {
                         detectionManager.registerProximityListener { covered ->
                             _isProximityCovered.value = covered
@@ -317,7 +340,6 @@ class FlipDetectorService : Service() {
                 PhoneOrientation.FACE_DOWN -> {
                     // Check DND schedule if enabled
                     if (dndScheduleEnabled) {
-                        val scheduleManager = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getScheduleManager(this@FlipDetectorService)
                         if (!scheduleManager.isWithinSchedule(dndScheduleStartTime, dndScheduleEndTime, dndScheduleDays)) {
                             Log.d(TAG, "Current time is outside DND schedule - Ignoring face down")
                             return
@@ -336,8 +358,6 @@ class FlipDetectorService : Service() {
                             Log.d(TAG, "Flashlight is ON - Ignoring face down")
                             return
                         }
-
-                        val detectionManager = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getDetectionManager(this@FlipDetectorService)
 
                         if (mediaPlaybackDetectionEnabled && detectionManager.isMediaPlaying()) {
                             Log.d(TAG, "Media is playing - Ignoring face down")
@@ -379,8 +399,7 @@ class FlipDetectorService : Service() {
                                 try {
                                     val enableBatterySaver = settingsRepository.getBatterySaverOnFlipEnabled().first()
                                     if (enableBatterySaver) {
-                                        dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getPowerController(this@FlipDetectorService)
-                                            .setBatterySaverEnabled(true)
+                                        powerController.setBatterySaverEnabled(true)
                                     }
                                 } catch (e: Exception) {
                                     Log.e(TAG, "Error handling battery saver: ${e.message}", e)
@@ -405,8 +424,7 @@ class FlipDetectorService : Service() {
                             try {
                                 val enableBatterySaver = settingsRepository.getBatterySaverOnFlipEnabled().first()
                                 if (enableBatterySaver) {
-                                    dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getPowerController(this@FlipDetectorService)
-                                        .setBatterySaverEnabled(false)
+                                    powerController.setBatterySaverEnabled(false)
                                 }
                             } catch (e: Exception) {
                                 Log.e(TAG, "Error disabling battery saver: ${e.message}", e)
@@ -457,8 +475,7 @@ class FlipDetectorService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     private fun isWithinDndSchedule(): Boolean {
-        return dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getScheduleManager(this)
-            .isWithinSchedule(dndScheduleStartTime, dndScheduleEndTime, dndScheduleDays)
+        return scheduleManager.isWithinSchedule(dndScheduleStartTime, dndScheduleEndTime, dndScheduleDays)
     }
 
     private fun createNotificationChannels() {

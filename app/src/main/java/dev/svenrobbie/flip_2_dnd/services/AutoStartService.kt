@@ -11,13 +11,11 @@ class AutoStartService : BroadcastReceiver() {
 		if (intent?.action == Intent.ACTION_BOOT_COMPLETED ||
 			intent?.action == Intent.ACTION_MY_PACKAGE_REPLACED) {
 			context?.let {
-				if (dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getFeatureManager(it).autoStartEnabled()) {
-					val prefs = it.getSharedPreferences("flip_2_dnd_settings", Context.MODE_PRIVATE)
-					val autoStartEnabled = prefs.getBoolean("auto_start", false)
-					if (autoStartEnabled) {
-						val serviceIntent = Intent(it, FlipDetectorService::class.java)
-						ContextCompat.startForegroundService(it, serviceIntent)
-					}
+				val prefs = it.getSharedPreferences("flip_2_dnd_settings", Context.MODE_PRIVATE)
+				val autoStartEnabled = prefs.getBoolean("auto_start", false)
+				if (autoStartEnabled) {
+					val serviceIntent = Intent(it, FlipDetectorService::class.java)
+					ContextCompat.startForegroundService(it, serviceIntent)
 				}
 			}
 		}

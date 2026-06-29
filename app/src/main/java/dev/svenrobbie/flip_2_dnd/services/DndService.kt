@@ -14,7 +14,10 @@ import android.util.Log
 import dev.svenrobbie.flip_2_dnd.R
 import dev.svenrobbie.flip_2_dnd.core.SettingsRepository
 import dev.svenrobbie.flip_2_dnd.core.DndRepository
+import dev.svenrobbie.flip_2_dnd.core.FlashController
 import dev.svenrobbie.flip_2_dnd.core.FlashlightPattern
+import dev.svenrobbie.flip_2_dnd.core.ScheduleManager
+import dev.svenrobbie.flip_2_dnd.core.SoundController
 import dev.svenrobbie.flip_2_dnd.core.VibrationPattern
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +33,10 @@ private const val TAG = "DndService"
 class DndService(
 	private val context: Context,
 	private val settingsRepository: SettingsRepository,
-	private val dndRepository: DndRepository
+	private val dndRepository: DndRepository,
+	private val flashController: FlashController,
+	private val scheduleManager: ScheduleManager,
+	private val soundController: SoundController
 ) {
 	private val notificationManager =
 		context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -42,7 +48,7 @@ class DndService(
 		@Suppress("DEPRECATION")
 		context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 	}
-	private val soundService = SoundService(context, settingsRepository)
+	private val soundService = SoundService(context, settingsRepository, soundController)
 
 	private val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
 	private val cameraId = try {
@@ -259,7 +265,6 @@ class DndService(
 			if (!isFlashlightEnabled) return@withContext
 
 			val feedbackWithFlashlightOn = settingsRepository.getFeedbackWithFlashlightOn().first()
-			val flashController = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getFlashController(context)
 
 			if (flashController.shouldSkipFeedback(isFlashlightOn, feedbackWithFlashlightOn)) {
 				return@withContext
@@ -270,7 +275,6 @@ class DndService(
 				val startTime = settingsRepository.getFlashlightScheduleStartTime().first()
 				val endTime = settingsRepository.getFlashlightScheduleEndTime().first()
 				val days = settingsRepository.getFlashlightScheduleDays().first()
-				val scheduleManager = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getScheduleManager(context)
 				if (!scheduleManager.isWithinSchedule(startTime, endTime, days)) {
 					Log.d(TAG, "Current time is outside flashlight schedule. Skipping flashlight blink.")
 					return@withContext
@@ -283,7 +287,6 @@ class DndService(
 	}
 
 	private fun isWithinSchedule(startTime: String, endTime: String, days: Set<Int>): Boolean {
-		return dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getScheduleManager(context)
-			.isWithinSchedule(startTime, endTime, days)
+		return scheduleManager.isWithinSchedule(startTime, endTime, days)
 	}
 }

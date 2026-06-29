@@ -1,16 +1,17 @@
 package dev.svenrobbie.flip_2_dnd.services
 
 import android.content.Context
-import android.content.Intent
 import dev.svenrobbie.flip_2_dnd.core.SettingsRepository
 import dev.svenrobbie.flip_2_dnd.core.Sound
+import dev.svenrobbie.flip_2_dnd.core.SoundController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 
 class SoundService(
-    private val context: android.content.Context,
-    private val settingsRepository: SettingsRepository
+    private val context: Context,
+    private val settingsRepository: SettingsRepository,
+    private val soundController: SoundController
 ) {
     
     companion object {
@@ -39,7 +40,6 @@ class SoundService(
             val volume = settingsRepository.getCustomVolume().first()
             val useCustomVolume = settingsRepository.getUseCustomVolume().first()
 
-            val soundController = dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getSoundController(context)
             soundController.playSound(sound, uri, volume, useCustomVolume)
         } catch (e: Exception) {
             android.util.Log.e(TAG, "Error playing sound: ${e.message}", e)
@@ -47,6 +47,6 @@ class SoundService(
     }
 
     fun release() {
-        dev.svenrobbie.flip_2_dnd.core.ServiceLocator.getSoundController(context).release()
+        soundController.release()
     }
 }

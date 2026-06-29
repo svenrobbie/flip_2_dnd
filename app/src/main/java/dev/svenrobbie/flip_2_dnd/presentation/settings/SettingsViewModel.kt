@@ -18,6 +18,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import dev.svenrobbie.flip_2_dnd.core.Sound
+import dev.svenrobbie.flip_2_dnd.core.SoundController
+import dev.svenrobbie.flip_2_dnd.core.SoundPicker
+import dev.svenrobbie.flip_2_dnd.core.ProFeatureManager
+import dev.svenrobbie.flip_2_dnd.core.UpdateResponse
 import dev.svenrobbie.flip_2_dnd.core.FlashlightPattern
 import dev.svenrobbie.flip_2_dnd.core.VibrationPattern
 import javax.inject.Inject
@@ -26,8 +30,9 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
 	application: Application,
 	private val settingsRepository: SettingsRepository,
-	private val soundController: dev.svenrobbie.flip_2_dnd.core.SoundController,
-    private val featureManager: dev.svenrobbie.flip_2_dnd.core.ProFeatureManager
+	private val soundController: SoundController,
+    private val featureManager: ProFeatureManager,
+    private val soundPicker: SoundPicker
 ) : AndroidViewModel(application) {
 
     val updateState = featureManager.getUpdateState()
@@ -36,8 +41,16 @@ class SettingsViewModel @Inject constructor(
         featureManager.checkForUpdate(manual)
     }
 
-    fun downloadAndInstall(context: Context, update: dev.svenrobbie.flip_2_dnd.core.UpdateResponse) {
+    fun downloadAndInstall(context: Context, update: UpdateResponse) {
         featureManager.downloadAndInstall(context, update)
+    }
+
+    fun launchDndOnSoundPicker(context: Context) {
+        soundPicker.launchPicker(context, true)
+    }
+
+    fun launchDndOffSoundPicker(context: Context) {
+        soundPicker.launchPicker(context, false)
     }
 
     private val _screenOffOnly = MutableStateFlow(false)
