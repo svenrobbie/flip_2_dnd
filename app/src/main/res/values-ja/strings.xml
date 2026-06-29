@@ -55,8 +55,8 @@
     <string name="vibration_enabled_description">DNDのバイブレーションを有効にします</string>
     <string name="use_custom_vibration_strength">カスタムバイブレーション強度を使用</string>
     <string name="extras">エキストラ</string>
-    <string name="join_telegram">Telegramに参加</string>
-    <string name="join_telegram_description">Telegramコミュニティに参加しよう（Pro版が必要）</string>
+    <string name="join_telegram">Freedom Edition</string>
+    <string name="join_telegram_description">View the Freedom Edition credits</string>
     <string name="support_developer">開発者を支援</string>
     <string name="support_developer_description">アプリの改善にご協力ください</string>
     <string name="your_support_helps">あなたの支援により、このアプリを改善し続けることができます！</string>

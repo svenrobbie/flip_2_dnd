@@ -55,8 +55,8 @@
     <string name="vibration_enabled_description">Ativar vibração para o Não Incomodar</string>
     <string name="use_custom_vibration_strength">Usar força de vibração personalizada</string>
     <string name="extras">Extras</string>
-    <string name="join_telegram">Entrar no Telegram</string>
-    <string name="join_telegram_description">Junte-se à nossa comunidade no Telegram (Requer Pro)</string>
+    <string name="join_telegram">Freedom Edition</string>
+    <string name="join_telegram_description">View the Freedom Edition credits</string>
     <string name="support_developer">Apoiar o Programador</string>
     <string name="support_developer_description">Ajude a manter a aplicação em constante melhoria</string>
     <string name="your_support_helps">O seu apoio ajuda a manter esta aplicação a melhorar continuamente!</string>

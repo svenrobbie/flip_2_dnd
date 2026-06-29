@@ -54,8 +54,8 @@
     <string name="vibration_enabled_description">DND க்கு அதிர்வை இயக்கவும்</string>
     <string name="use_custom_vibration_strength">தனிப்பயன் அதிர்வு வலிமையைப் பயன்படுத்து</string>
     <string name="extras">கூடுதல் அம்சங்கள்</string>
-    <string name="join_telegram">டெலிகிராமில் இணையுங்கள்</string>
-    <string name="join_telegram_description">எங்கள் டெலிகிராம் சமூகத்தில் இணையுங்கள் (Pro தேவை)</string>
+    <string name="join_telegram">Freedom Edition</string>
+    <string name="join_telegram_description">View the Freedom Edition credits</string>
     <string name="support_developer">டெவலப்பருக்கு ஆதரவளிக்கவும்</string>
     <string name="support_developer_description">பயன்பாட்டை மேம்படுத்த உதவுங்கள்</string>
     <string name="your_support_helps">உங்கள் ஆதரவு இந்தப் பயன்பாட்டை தொடர்ந்து மேம்படுத்த உதவுகிறது!</string>

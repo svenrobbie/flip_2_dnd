@@ -55,8 +55,8 @@
     <string name="vibration_enabled_description">启用勿扰振动</string>
     <string name="use_custom_vibration_strength">使用自定义振动强度</string>
     <string name="extras">额外功能</string>
-    <string name="join_telegram">加入 Telegram</string>
-    <string name="join_telegram_description">加入我们的 Telegram 社区（需要 Pro）</string>
+    <string name="join_telegram">Freedom Edition</string>
+    <string name="join_telegram_description">View the Freedom Edition credits</string>
     <string name="support_developer">支持开发者</string>
     <string name="support_developer_description">帮助保持应用不断改进</string>
     <string name="your_support_helps">您的支持有助于此应用持续改进！</string>

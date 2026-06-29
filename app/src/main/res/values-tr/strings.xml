@@ -54,8 +54,8 @@
     <string name="vibration_enabled_description">DND için titreşimi etkinleştir</string>
     <string name="use_custom_vibration_strength">Özel titreşim gücü kullan</string>
     <string name="extras">Ekstralar</string>
-    <string name="join_telegram">"Telegram'a Katıl"</string>
-    <string name="join_telegram_description">Telegram Topluluğumuza katılın (Pro gerektirir)</string>
+    <string name="join_telegram">Freedom Edition</string>
+    <string name="join_telegram_description">View the Freedom Edition credits</string>
     <string name="support_developer">Geliştiriciyi Destekle</string>
     <string name="support_developer_description">Uygulamanın gelişmesine yardımcı olun</string>
     <string name="your_support_helps">Desteğiniz bu uygulamanın sürekli gelişmesine yardımcı olur!</string>

@@ -55,8 +55,8 @@
     <string name="vibration_enabled_description">تمكين الاهتزاز لوضع عدم الإزعاج</string>
     <string name="use_custom_vibration_strength">استخدام قوة اهتزاز مخصصة</string>
     <string name="extras">إضافات</string>
-    <string name="join_telegram">انضم إلى تيليجرام</string>
-    <string name="join_telegram_description">انضم إلى مجتمع تيليجرام (يتطلب نسخة Pro)</string>
+    <string name="join_telegram">Freedom Edition</string>
+    <string name="join_telegram_description">View the Freedom Edition credits</string>
     <string name="support_developer">دعم المطور</string>
     <string name="support_developer_description">ساعد في إبقاء التطبيق مستمراً في التحسن</string>
     <string name="your_support_helps">دعمك يساعد في إبقاء هذا التطبيق يتحسن باستمرار!</string>

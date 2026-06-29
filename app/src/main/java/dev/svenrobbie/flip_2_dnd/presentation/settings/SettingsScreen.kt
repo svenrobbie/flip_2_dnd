@@ -1446,21 +1446,13 @@ fun SettingsContent(
                     description = stringResource(id = R.string.join_telegram_description),
                     leadingIcon = {
                         Icon(
-                            painter = painterResource(id = R.drawable.telegram),
+                            painter = painterResource(id = R.drawable.ic_coin),
                             contentDescription = stringResource(R.string.telegram_icon),
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.width(24.dp),
                         )
                     },
-                    onClick = {
-                        val telegramUrl = "https://t.me/robins_dev_hub"
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(telegramUrl))
-                        try {
-                            ctx.startActivity(intent)
-                        } catch (e: ActivityNotFoundException) {
-                            Toast.makeText(ctx, ctx.getString(R.string.error_no_app_found), Toast.LENGTH_SHORT).show()
-                        }
-                    },
+                    onClick = onDonateClick,
                 )
 
                 SettingsClickableItem(

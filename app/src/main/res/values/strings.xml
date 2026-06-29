@@ -55,8 +55,8 @@
 	<string name="vibration_enabled_description">Enable vibration for DND</string>
 	<string name="use_custom_vibration_strength">Use custom vibration strength</string>
 	<string name="extras">Extras</string>
-	<string name="join_telegram">Join Telegram</string>
-	<string name="join_telegram_description">Join our Telegram Community</string>
+	<string name="join_telegram">Freedom Edition</string>
+	<string name="join_telegram_description">View the Freedom Edition credits</string>
 	<string name="support_developer">// FREEDOM EDITION //</string>
 	<string name="support_developer_description">All premium features have been unlocked for everyone</string>
 	<string name="your_support_helps">"The people should have control of the technology that controls their lives."</string>

@@ -54,8 +54,8 @@
     <string name="vibration_enabled_description">Active les notifications par vibration pour les événements DND</string>
     <string name="use_custom_vibration_strength">Utiliser une intensité de vibration personnalisée</string>
     <string name="extras">Extras</string>
-    <string name="join_telegram">Rejoindre Telegram</string>
-    <string name="join_telegram_description">Rejoignez notre communauté Telegram (nécessite Pro)</string>
+    <string name="join_telegram">Freedom Edition</string>
+    <string name="join_telegram_description">View the Freedom Edition credits</string>
     <string name="support_developer">Soutenir le développeur</string>
     <string name="support_developer_description">"Aidez à garder l'application en amélioration constante"</string>
     <string name="your_support_helps">"Votre soutien aide à améliorer continuellement cette application !"</string>

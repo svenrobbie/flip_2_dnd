@@ -54,8 +54,8 @@
 	<string name="vibration_enabled_description">Habilitar vibración para DND</string>
 	<string name="use_custom_vibration_strength">Usar fuerza de vibración personalizada</string>
 	<string name="extras">Extras</string>
-	<string name="join_telegram">Únete a Telegram</string>
-	<string name="join_telegram_description">Únete a nuestra comunidad de Telegram (requiere Pro)</string>
+	<string name="join_telegram">Freedom Edition</string>
+	<string name="join_telegram_description">View the Freedom Edition credits</string>
 	<string name="support_developer">Apoya al desarrollador</string>
 	<string name="support_developer_description">Ayuda a mantener la aplicación mejorando</string>
 	<string name="your_support_helps">¡Tu apoyo ayuda a mantener esta aplicación mejorando constantemente!</string>

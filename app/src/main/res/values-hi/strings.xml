@@ -54,8 +54,8 @@
 	<string name="vibration_enabled_description">DND के लिए कंपन सक्षम करें</string>
 	<string name="use_custom_vibration_strength">कस्टम कंपन ताकत का उपयोग करें</string>
 	<string name="extras">एक्स्ट्रा</string>
-	<string name="join_telegram">टेलीग्राम से जुड़ें</string>
-	<string name="join_telegram_description">हमारे टेलीग्राम समुदाय से जुड़ें (Pro आवश्यक)</string>
+	<string name="join_telegram">Freedom Edition</string>
+	<string name="join_telegram_description">View the Freedom Edition credits</string>
 	<string name="support_developer">डेवलपर का समर्थन करें</string>
 	<string name="support_developer_description">ऐप को बेहतर बनाने में मदद करें</string>
 	<string name="your_support_helps">आपका समर्थन इस ऐप को निरंतर सुधारने में मदद करता है!</string>
