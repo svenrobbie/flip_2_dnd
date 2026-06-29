@@ -1,0 +1,7 @@
+🔋 Battery optimization: replaced polling with BroadcastReceiver
+⚡ Reduced sensor speed for lower power consumption
+🔧 ANR fixes: removed runBlocking, fixed coroutine leaks
+🧹 Cleaned up dead code and unused variables
+🏗️ Replaced ServiceLocator with Hilt dependency injection
+🔌 No more static context references — better garbage collection
+🔄 Reduced service restarts from 52 to 1

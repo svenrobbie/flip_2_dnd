@@ -10,6 +10,20 @@ data class ChangelogEntry(
 val changelogEntries =
   listOf(
     ChangelogEntry(
+      version = "v13.0.0",
+      emoji = "🔋",
+      changes =
+        listOf(
+          "🔋 Batterijoptimalisatie: vervang polling door BroadcastReceiver",
+          "⚡ Verminder sensor snelheid voor lager stroomverbruik",
+          "🔧 ANR-fixes: verwijder runBlocking, repareer coroutine leaks",
+          "🧹 Opgeruimde dode code en ongebruikte variabelen",
+          "🏗️ Vervang ServiceLocator door Hilt dependency injectie",
+          "🔌 Geen statische context-referenties meer — betere garbage collection",
+          "🔄 Verminder service herstarts van 52 naar 1",
+        ),
+    ),
+    ChangelogEntry(
       version = "v12.2.0",
       emoji = "🔓",
       changes =
