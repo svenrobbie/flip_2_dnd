@@ -43,7 +43,7 @@
     <string name="adb_command_description">"Pour activer le basculement automatique de l'économiseur de batterie, veuillez accorder l'autorisation WRITE_SECURE_SETTINGS à l'aide de la commande ADB suivante :"</string>
     <string name="copy_command">Copier la commande</string>
     <string name="close">Fermer</string>
-    <string name="adb_command_text">adb shell pm grant dev.robin.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_command_text">adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="dnd_on_sound_description">Joue un son lorsque DND est activé</string>
     <string name="dnd_off_sound_description">Joue un son lorsque DND est désactivé</string>
     <string name="use_custom_volume_description">Permet de définir un volume personnalisé pour le son DND</string>
@@ -57,8 +57,8 @@
     <string name="join_telegram">Rejoindre Telegram</string>
     <string name="join_telegram_description">Rejoignez notre communauté Telegram (nécessite Pro)</string>
     <string name="support_developer">Soutenir le développeur</string>
-    <string name="support_developer_description">"Aidez à garder l'application gratuite et en amélioration constante"</string>
-    <string name="your_support_helps">"Votre soutien aide à garder cette application gratuite et à l'améliorer continuellement !"</string>
+    <string name="support_developer_description">"Aidez à garder l'application en amélioration constante"</string>
+    <string name="your_support_helps">"Votre soutien aide à améliorer continuellement cette application !"</string>
     <string name="thanks_for_support">Merci pour votre généreux soutien ! ❤️</string>
     <string name="general">Général</string>
     <string name="language">Langue</string>
@@ -170,20 +170,7 @@
     <string name="flashlight_long_blink">Clignotement long</string>
     <string name="flashlight_rapid_blink">Clignotement rapide</string>
 
-    <!-- Upgrade Dialog -->
-    <string name="upgrade_to_pro">Passer à la version Pro</string>
-    <string name="upgrade_to_pro_description">Débloquez toutes les fonctionnalités premium et soutenez le développeur.</string>
-    <string name="feature_auto_start">Démarrage automatique au démarrage</string>
-    <string name="feature_sensitivity">Paramètres de sensibilité avancés</string>
-    <string name="feature_delay">"Délai d'activation personnalisé"</string>
-    <string name="feature_schedules">Calendriers DND, Son et Vibration</string>
-    <string name="feature_custom_sounds">Sons personnalisés à partir de fichiers</string>
-    <string name="feature_proximity">Détection par capteur de proximité</string>
-    <string name="feature_telegram">Groupe de support Telegram</string>
-    <string name="get_pro">Obtenir Flip 2 DND Pro</string>
-    <string name="maybe_later">Peut-être plus tard</string>
-    <string name="pro">PRO</string>
-    <string name="day_sunday_short">D</string>
+<string name="day_sunday_short">D</string>
     <string name="day_monday_short">L</string>
     <string name="day_tuesday_short">M</string>
     <string name="day_wednesday_short">M</string>
@@ -263,17 +250,10 @@
     <string name="permission_notification">Notifications</string>
     <string name="grant">Accorder</string>
     <string name="check_again">Vérifier à nouveau</string>
-    <string name="support_dialog_title">Soutenir le développeur</string>
-    <string name="support_dialog_message">Merci d utiliser Flip 2 DND ! Votre soutien m aide a garder l application gratuite et en amelioration continue. Si vous trouvez l application utile, merci de considerer un soutien.</string>
-    <string name="patreon">Patreon</string>
-    <string name="crypto">Crypto</string>
-    <string name="check_for_updates">Vérifier les mises à jour</string>
-    <string name="check_for_updates_description">Vérifier la dernière version de Flip 2 DND (nécessite Pro)</string>
-    <string name="update_check_dialog_title">Vérifier les mises à jour</string>
-    <string name="update_check_dialog_message">Où avez-vous acheté Flip 2 DND Pro ? Nous vous redirigerons vers la plateforme correspondante pour vérifier les mises à jour.</string>
-    <string name="feedback_with_flashlight_on">Retour même si la lampe est allumée</string>
-    <string name="gumroad">Gumroad</string>
-    <string name="feedback">Retour</string>
+<string name="check_for_updates">Vérifier les mises à jour</string>
+    <string name="check_for_updates_description">Vérifier la dernière version de Flip 2 DND</string>
+<string name="feedback_with_flashlight_on">Retour même si la lampe est allumée</string>
+<string name="feedback">Retour</string>
     <string name="flashlight_schedule">Calendrier lampe de poche</string>
     <string name="flashlight_schedule_description">Ne clignoter qu a ces horaires.</string>
     <string name="flashlight_intensity">Intensité de la lampe</string>

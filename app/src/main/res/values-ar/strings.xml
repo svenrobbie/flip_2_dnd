@@ -44,7 +44,7 @@
     <string name="adb_command_description">لتمكين تبديل موفر البطارية تلقائياً، يرجى منح إذن WRITE_SECURE_SETTINGS باستخدام أمر ADB التالي:</string>
     <string name="copy_command">نسخ الأمر</string>
     <string name="close">إغلاق</string>
-    <string name="adb_command_text">adb shell pm grant dev.robin.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_command_text">adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="dnd_on_sound_description">الصوت الذي يعمل عند تفعيل وضع عدم الإزعاج</string>
     <string name="dnd_off_sound_description">الصوت الذي يعمل عند إيقاف وضع عدم الإزعاج</string>
     <string name="use_custom_volume_description">استخدام مستوى صوت مخصص لأصوات وضع عدم الإزعاج</string>
@@ -58,8 +58,8 @@
     <string name="join_telegram">انضم إلى تيليجرام</string>
     <string name="join_telegram_description">انضم إلى مجتمع تيليجرام (يتطلب نسخة Pro)</string>
     <string name="support_developer">دعم المطور</string>
-    <string name="support_developer_description">ساعد في إبقاء التطبيق مجانياً ومستمراً في التحسن</string>
-    <string name="your_support_helps">دعمك يساعد في إبقاء هذا التطبيق مجانياً ويتحسن باستمرار!</string>
+    <string name="support_developer_description">ساعد في إبقاء التطبيق مستمراً في التحسن</string>
+    <string name="your_support_helps">دعمك يساعد في إبقاء هذا التطبيق يتحسن باستمرار!</string>
     <string name="thanks_for_support">شكراً لدعمك السخي! ❤️</string>
     <string name="general">عام</string>
     <string name="language">اللغة</string>
@@ -169,19 +169,7 @@
     <string name="flashlight_long_blink">ومضة طويلة</string>
     <string name="flashlight_rapid_blink">ومضة سريعة</string>
 
-    <!-- Upgrade Dialog -->
-    <string name="upgrade_to_pro">الترقية إلى Pro</string>
-    <string name="upgrade_to_pro_description">افتح جميع الميزات المميزة وادعم المطور.</string>
-    <string name="feature_auto_start">بدء التشغيل التلقائي عند التمهيد</string>
-    <string name="feature_sensitivity">إعدادات الحساسية المتقدمة</string>
-    <string name="feature_delay">تأخير تنشيط مخصص</string>
-    <string name="feature_schedules">جداول عدم الإزعاج والصوت والاهتزاز</string>
-    <string name="feature_custom_sounds">أصوات مخصصة من الملفات</string>
-    <string name="feature_telegram">مجموعة دعم تيليجرام</string>
-    <string name="get_pro">احصل على Flip 2 DND Pro</string>
-    <string name="maybe_later">ربما لاحقاً</string>
-    <string name="pro">PRO</string>
-    <string name="day_sunday_short">ح</string>
+<string name="day_sunday_short">ح</string>
     <string name="day_monday_short">ن</string>
     <string name="day_tuesday_short">ث</string>
     <string name="day_wednesday_short">ر</string>
@@ -237,17 +225,10 @@
     <string name="permission_notification">التنبيهات</string>
     <string name="grant">منح</string>
     <string name="check_again">تحقق مرة أخرى</string>
-    <string name="support_dialog_title">ادعم المطور</string>
-    <string name="support_dialog_message">شكراً لاستخدامك Flip 2 DND! يساعدني دعمك في إبقاء التطبيق مجانياً ويتحسن باستمرار. إذا وجدت التطبيق مفيداً، يرجى التفكير في الدعم.</string>
-    <string name="patreon">Patreon</string>
-    <string name="crypto">العملات المشفرة</string>
-    <string name="check_for_updates">تحقق من التحديثات</string>
-    <string name="check_for_updates_description">تحقق من أحدث إصدار لـ Flip 2 DND (يتطلب Pro)</string>
-    <string name="update_check_dialog_title">التحقق من التحديثات</string>
-    <string name="update_check_dialog_message">أين قمت بشراء Flip 2 DND Pro؟ سنوجهك إلى المنصة المناسبة للتحقق من التحديثات.</string>
-    <string name="feedback_with_flashlight_on">تقديم الملاحظات حتى لو كان الكشاف يعمل</string>
-    <string name="gumroad">Gumroad</string>
-    <string name="flashlight_schedule">جدول الكشاف</string>
+<string name="check_for_updates">تحقق من التحديثات</string>
+    <string name="check_for_updates_description">تحقق من أحدث إصدار لـ Flip 2 DND</string>
+<string name="feedback_with_flashlight_on">تقديم الملاحظات حتى لو كان الكشاف يعمل</string>
+<string name="flashlight_schedule">جدول الكشاف</string>
     <string name="flashlight_schedule_description">وميض فقط خلال هذه الأوقات.</string>
     <string name="flashlight_intensity">شدة الكشاف</string>
     <string name="flashlight_intensity_description">اضبط سطوع ملاحظات الكشاف (Android 13+ فقط)</string>
@@ -255,8 +236,7 @@
     <string name="high_sensitivity_schedule_description">تفعيل الحساسية العالية فقط خلال هذه الأوقات.</string>
     <string name="whats_new">ما الجديد</string>
     <string name="ramadan_coupon">RAMADANKARIM</string>
-    <string name="feature_proximity">اكتشاف مستشعر القرب</string>
-    <string name="proximity_detection">اكتشاف القرب</string>
+<string name="proximity_detection">اكتشاف القرب</string>
     <string name="proximity_detection_description">فعّل عدم الإزعاج فقط إذا كان مستشعر القرب مغطى أيضاً (يتطلب Pro)</string>
     <string name="cancel">إلغاء</string>
     <!-- Activation Modes -->

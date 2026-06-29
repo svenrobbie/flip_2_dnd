@@ -44,7 +44,7 @@
     <string name="adb_command_description">배터리 절약 모드 자동 전환을 활성화하려면 다음 ADB 명령어를 사용하여 WRITE_SECURE_SETTINGS 권한을 부여하세요:</string>
     <string name="copy_command">명령어 복사</string>
     <string name="close">닫기</string>
-    <string name="adb_command_text">adb shell pm grant dev.robin.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_command_text">adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="dnd_on_sound_description">방해 금지 모드가 활성화될 때 재생할 사운드</string>
     <string name="dnd_off_sound_description">방해 금지 모드가 비활성화될 때 재생할 사운드</string>
     <string name="use_custom_volume_description">방해 금지 사운드에 사용자 지정 볼륨을 사용합니다</string>
@@ -58,8 +58,8 @@
     <string name="join_telegram">텔레그램 참여</string>
     <string name="join_telegram_description">텔레그램 커뮤니티에 참여하세요 (Pro 필요)</string>
     <string name="support_developer">개발자 지원</string>
-    <string name="support_developer_description">앱을 무료로 유지하고 지속적으로 개선할 수 있도록 도와주세요</string>
-    <string name="your_support_helps">여러분의 지원은 이 앱을 무료로 유지하고 지속적인 개선에 큰 도움이 됩니다!</string>
+    <string name="support_developer_description">앱을 지속적으로 개선할 수 있도록 도와주세요</string>
+    <string name="your_support_helps">여러분의 지원은 이 앱의 지속적인 개선에 큰 도움이 됩니다!</string>
     <string name="thanks_for_support">여러분의 소중한 지원에 감사합니다! ❤️</string>
     <string name="general">일반</string>
     <string name="language">언어</string>
@@ -169,19 +169,7 @@
     <string name="flashlight_long_blink">길게 깜박임</string>
     <string name="flashlight_rapid_blink">빠르게 깜박임</string>
 
-    <!-- Upgrade Dialog -->
-    <string name="upgrade_to_pro">Pro로 업그레이드</string>
-    <string name="upgrade_to_pro_description">모든 프리미엄 기능을 잠금 해제하고 개발자를 지원하세요.</string>
-    <string name="feature_auto_start">부팅 시 자동 시작</string>
-    <string name="feature_sensitivity">고급 감도 설정</string>
-    <string name="feature_delay">사용자 지정 활성화 지연</string>
-    <string name="feature_schedules">방해 금지, 사운드, 진동 일정 설정</string>
-    <string name="feature_custom_sounds">파일에서 사용자 지정 사운드 설정</string>
-    <string name="feature_telegram">텔레그램 지원 그룹</string>
-    <string name="get_pro">Flip 2 DND Pro 구매</string>
-    <string name="maybe_later">나중에</string>
-    <string name="pro">PRO</string>
-    <string name="day_sunday_short">일</string>
+<string name="day_sunday_short">일</string>
     <string name="day_monday_short">월</string>
     <string name="day_tuesday_short">화</string>
     <string name="day_wednesday_short">수</string>
@@ -261,17 +249,10 @@
     <string name="permission_notification">알림</string>
     <string name="grant">부여</string>
     <string name="check_again">다시 확인</string>
-    <string name="support_dialog_title">개발자 지원</string>
-    <string name="support_dialog_message">Flip 2 DND를 사용해 주셔서 감사합니다! 여러분의 지원은 앱을 무료로 유지하고 지속적으로 개선하는 데 도움이 됩니다. 유용하다고 느끼신다면 지원을 고려해 주세요.</string>
-    <string name="patreon">Patreon</string>
-    <string name="crypto">암호화폐</string>
-    <string name="check_for_updates">업데이트 확인</string>
-    <string name="check_for_updates_description">Flip 2 DND 최신 버전 확인 (Pro 필요)</string>
-    <string name="update_check_dialog_title">업데이트 확인</string>
-    <string name="update_check_dialog_message">Flip 2 DND Pro를 어디에서 구매하셨나요? 해당 플랫폼으로 안내하여 업데이트를 확인합니다.</string>
-    <string name="feedback_with_flashlight_on">손전등 켜짐 상태에서도 피드백</string>
-    <string name="gumroad">Gumroad</string>
-    <string name="feedback">피드백</string>
+<string name="check_for_updates">업데이트 확인</string>
+    <string name="check_for_updates_description">Flip 2 DND 최신 버전 확인</string>
+<string name="feedback_with_flashlight_on">손전등 켜짐 상태에서도 피드백</string>
+<string name="feedback">피드백</string>
     <string name="flashlight_schedule">손전등 일정</string>
     <string name="flashlight_schedule_description">이 시간에만 깜박입니다.</string>
     <string name="flashlight_intensity">손전등 밝기</string>
@@ -280,8 +261,7 @@
     <string name="high_sensitivity_schedule_description">이 시간에만 고감도를 활성화합니다.</string>
     <string name="whats_new">새로운 소식</string>
     <string name="ramadan_coupon">RAMADANKARIM</string>
-    <string name="feature_proximity">근접 센서 감지</string>
-    <string name="proximity_detection">근접 감지</string>
+<string name="proximity_detection">근접 감지</string>
     <string name="proximity_detection_description">근접 센서가 가려진 경우에만 DND 활성화 (Pro 필요)</string>
     <string name="cancel">취소</string>
     <string name="turn_screen_off">화면 끄기</string>

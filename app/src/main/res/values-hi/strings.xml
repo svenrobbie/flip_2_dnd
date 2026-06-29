@@ -39,7 +39,7 @@
 	<string name="adb_command_description">स्वचालित बैटरी सेवर टॉगलिंग सक्षम करने के लिए, कृपया निम्नलिखित ADB कमांड का उपयोग करके WRITE_SECURE_SETTINGS अनुमति प्रदान करें:</string>
 	<string name="copy_command">कमांड कॉपी करें</string>
 	<string name="close">बंद करें</string>
-	<string name="adb_command_text">adb shell pm grant dev.robin.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
+	<string name="adb_command_text">adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
 	<string name="dnd_on_sound_description">DND सक्षम होने पर बजने वाली ध्वनि</string>
 	<string name="dnd_off_sound_description">DND बंद होने पर बजने वाली ध्वनि</string>
 	<string name="use_custom_volume">कस्टम वॉल्यूम का उपयोग करें</string>
@@ -57,8 +57,8 @@
 	<string name="join_telegram">टेलीग्राम से जुड़ें</string>
 	<string name="join_telegram_description">हमारे टेलीग्राम समुदाय से जुड़ें (Pro आवश्यक)</string>
 	<string name="support_developer">डेवलपर का समर्थन करें</string>
-	<string name="support_developer_description">ऐप को मुफ्त और बेहतर बनाने में मदद करें</string>
-	<string name="your_support_helps">आपका समर्थन इस ऐप को मुफ्त और निरंतर सुधारने में मदद करता है!</string>
+	<string name="support_developer_description">ऐप को बेहतर बनाने में मदद करें</string>
+	<string name="your_support_helps">आपका समर्थन इस ऐप को निरंतर सुधारने में मदद करता है!</string>
 	<string name="thanks_for_support">आपके उदार समर्थन के लिए धन्यवाद! ❤️</string>
 	<string name="general">सामान्य</string>
 	<string name="language">भाषा</string>
@@ -169,19 +169,7 @@
 	<string name="flashlight_long_blink">लंबा ब्लिंक</string>
 	<string name="flashlight_rapid_blink">तेज ब्लिंक</string>
 
-	<!-- Upgrade Dialog -->
-	<string name="upgrade_to_pro">Pro में अपग्रेड करें</string>
-	<string name="upgrade_to_pro_description">सभी प्रीमियम सुविधाओं को अनलॉक करें और डेवलपर का समर्थन करें।</string>
-	<string name="feature_auto_start">बूट पर स्वतः प्रारंभ</string>
-	<string name="feature_sensitivity">उन्नत संवेदनशीलता सेटिंग्स</string>
-	<string name="feature_delay">कस्टम सक्रियण विलंब</string>
-	<string name="feature_schedules">DND, ध्वनि और कंपन शेड्यूल</string>
-	<string name="feature_custom_sounds">फ़ाइलों से कस्टम ध्वनियाँ</string>
-	<string name="feature_telegram">टेलीग्राम सपोर्ट ग्रुप</string>
-	<string name="get_pro">Flip 2 DND Pro प्राप्त करें</string>
-	<string name="maybe_later">बाद में</string>
-	<string name="pro">PRO</string>
-	<string name="day_sunday_short">र</string>
+<string name="day_sunday_short">र</string>
 	<string name="day_monday_short">सो</string>
 	<string name="day_tuesday_short">मं</string>
 	<string name="day_wednesday_short">बु</string>
@@ -260,17 +248,10 @@
     <string name="permission_notification">सूचनाएँ</string>
     <string name="grant">अनुमति दें</string>
     <string name="check_again">फिर जांचें</string>
-    <string name="support_dialog_title">डेवलपर का समर्थन करें</string>
-    <string name="support_dialog_message">Flip 2 DND उपयोग करने के लिए धन्यवाद! आपका समर्थन ऐप को मुफ्त रखने और निरंतर सुधार में मदद करता है। अगर ऐप उपयोगी लगे, कृपया समर्थन करने पर विचार करें।</string>
-    <string name="patreon">Patreon</string>
-    <string name="crypto">क्रिप्टो</string>
-    <string name="check_for_updates">अपडेट जांचें</string>
-    <string name="check_for_updates_description">Flip 2 DND का नवीनतम संस्करण जांचें (Pro आवश्यक)</string>
-    <string name="update_check_dialog_title">अपडेट जांचें</string>
-    <string name="update_check_dialog_message">आपने Flip 2 DND Pro कहाँ से खरीदा? हम आपको संबंधित प्लेटफ़ॉर्म पर अपडेट जांचने के लिए भेजेंगे।</string>
-    <string name="feedback_with_flashlight_on">फ़्लैशलाइट चालू होने पर भी फीडबैक</string>
-    <string name="gumroad">Gumroad</string>
-    <string name="feedback">फीडबैक</string>
+<string name="check_for_updates">अपडेट जांचें</string>
+    <string name="check_for_updates_description">Flip 2 DND का नवीनतम संस्करण जांचें</string>
+<string name="feedback_with_flashlight_on">फ़्लैशलाइट चालू होने पर भी फीडबैक</string>
+<string name="feedback">फीडबैक</string>
     <string name="flashlight_schedule">फ़्लैशलाइट समय-सारिणी</string>
     <string name="flashlight_schedule_description">केवल इन समयों पर चमकाएँ।</string>
     <string name="flashlight_intensity">फ़्लैशलाइट तीव्रता</string>
@@ -279,8 +260,7 @@
     <string name="high_sensitivity_schedule_description">केवल इन समयों में उच्च संवेदनशीलता सक्षम करें।</string>
     <string name="whats_new">क्या नया है</string>
     <string name="ramadan_coupon">RAMADANKARIM</string>
-    <string name="feature_proximity">निकटता सेंसर पहचान</string>
-    <string name="proximity_detection">निकटता पहचान</string>
+<string name="proximity_detection">निकटता पहचान</string>
     <string name="proximity_detection_description">केवल तब DND सक्षम करें जब निकटता सेंसर भी ढका हो (Pro आवश्यक)</string>
     <string name="cancel">रद्द करें</string>
     <string name="turn_screen_off">स्क्रीन बंद करें</string>

@@ -44,7 +44,7 @@
     <string name="adb_command_description">自動バッテリーセーバー切り替えを有効にするには、以下のADBコマンドを使用してWRITE_SECURE_SETTINGS権限を付与してください：</string>
     <string name="copy_command">コマンドをコピー</string>
     <string name="close">閉じる</string>
-    <string name="adb_command_text">adb shell pm grant dev.robin.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_command_text">adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="dnd_on_sound_description">DNDが有効になったときに再生する音</string>
     <string name="dnd_off_sound_description">DNDが無効になったときに再生する音</string>
     <string name="use_custom_volume_description">DNDのサウンドにカスタム音量を使用します</string>
@@ -58,8 +58,8 @@
     <string name="join_telegram">Telegramに参加</string>
     <string name="join_telegram_description">Telegramコミュニティに参加しよう（Pro版が必要）</string>
     <string name="support_developer">開発者を支援</string>
-    <string name="support_developer_description">アプリを無料かつ改善し続けられるよう支援してください</string>
-    <string name="your_support_helps">あなたの支援により、このアプリを無料で改善し続けることができます！</string>
+    <string name="support_developer_description">アプリの改善にご協力ください</string>
+    <string name="your_support_helps">あなたの支援により、このアプリを改善し続けることができます！</string>
     <string name="thanks_for_support">ご支援ありがとうございます！❤️</string>
     <string name="general">一般</string>
     <string name="language">言語</string>
@@ -169,19 +169,7 @@
     <string name="flashlight_long_blink">ロング点滅</string>
     <string name="flashlight_rapid_blink">高速点滅</string>
 
-    <!-- Upgrade Dialog -->
-    <string name="upgrade_to_pro">Pro版へアップグレード</string>
-    <string name="upgrade_to_pro_description">すべてのプレミアム機能を利用可能にし、開発者を支援します。</string>
-    <string name="feature_auto_start">起動時に自動開始</string>
-    <string name="feature_sensitivity">高度な感度設定</string>
-    <string name="feature_delay">カスタム有効化遅延</string>
-    <string name="feature_schedules">DND、サウンド、バイブのスケジュール設定</string>
-    <string name="feature_custom_sounds">ファイルからカスタムサウンドを設定</string>
-    <string name="feature_telegram">Telegram サポートグループ</string>
-    <string name="get_pro">Flip 2 DND Pro を入手</string>
-    <string name="maybe_later">あとで</string>
-    <string name="pro">PRO</string>
-    <string name="day_sunday_short">日</string>
+<string name="day_sunday_short">日</string>
     <string name="day_monday_short">月</string>
     <string name="day_tuesday_short">火</string>
     <string name="day_wednesday_short">水</string>
@@ -261,17 +249,10 @@
     <string name="permission_notification">通知</string>
     <string name="grant">付与</string>
     <string name="check_again">再確認</string>
-    <string name="support_dialog_title">開発者を支援</string>
-    <string name="support_dialog_message">Flip 2 DND をご利用いただきありがとうございます！皆様の支援により、アプリを無料で継続的に改善できます。役立つと感じたら、ぜひ支援をご検討ください。</string>
-    <string name="patreon">Patreon</string>
-    <string name="crypto">暗号資産</string>
-    <string name="check_for_updates">アップデートを確認</string>
-    <string name="check_for_updates_description">Flip 2 DND の最新バージョンを確認（Pro が必要）</string>
-    <string name="update_check_dialog_title">アップデートを確認</string>
-    <string name="update_check_dialog_message">Flip 2 DND Pro はどこで購入しましたか？該当プラットフォームに誘導してアップデートを確認します。</string>
-    <string name="feedback_with_flashlight_on">ライト点灯中でもフィードバック</string>
-    <string name="gumroad">Gumroad</string>
-    <string name="feedback">フィードバック</string>
+<string name="check_for_updates">アップデートを確認</string>
+    <string name="check_for_updates_description">Flip 2 DND の最新バージョンを確認</string>
+<string name="feedback_with_flashlight_on">ライト点灯中でもフィードバック</string>
+<string name="feedback">フィードバック</string>
     <string name="flashlight_schedule">フラッシュライトのスケジュール</string>
     <string name="flashlight_schedule_description">この時間帯のみ点滅します。</string>
     <string name="flashlight_intensity">ライトの明るさ</string>
@@ -280,8 +261,7 @@
     <string name="high_sensitivity_schedule_description">この時間帯のみ高感度を有効化します。</string>
     <string name="whats_new">新着情報</string>
     <string name="ramadan_coupon">RAMADANKARIM</string>
-    <string name="feature_proximity">近接センサー検出</string>
-    <string name="proximity_detection">近接検出</string>
+<string name="proximity_detection">近接検出</string>
     <string name="proximity_detection_description">近接センサーが覆われている場合のみ DND を有効化（Pro が必要）</string>
     <string name="cancel">キャンセル</string>
     <string name="turn_screen_off">画面を消す</string>

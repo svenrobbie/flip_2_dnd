@@ -43,7 +43,7 @@
 	<string name="adb_command_description">To enable automatic Battery Saver toggling, please grant the WRITE_SECURE_SETTINGS permission using the following ADB command:</string>
 	<string name="copy_command">Copy Command</string>
 	<string name="close">Close</string>
-	<string name="adb_command_text">adb shell pm grant dev.robin.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
+	<string name="adb_command_text">adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="adb_command">ADB command</string>
 	<string name="dnd_on_sound_description">Sound to play when DND is enabled</string>
 	<string name="dnd_off_sound_description">Sound to play when DND is disabled</string>
@@ -57,10 +57,10 @@
 	<string name="extras">Extras</string>
 	<string name="join_telegram">Join Telegram</string>
 	<string name="join_telegram_description">Join our Telegram Community</string>
-	<string name="support_developer">Support Developer</string>
-	<string name="support_developer_description">Help keep the app free and improving</string>
-	<string name="your_support_helps">Your support helps keep this app free and continuously improving!</string>
-	<string name="thanks_for_support">Thank you for your generous support! ❤️</string>
+	<string name="support_developer">// FREEDOM EDITION //</string>
+	<string name="support_developer_description">All premium features have been unlocked for everyone</string>
+	<string name="your_support_helps">"The people should have control of the technology that controls their lives."</string>
+	<string name="thanks_for_support">Unlocked by SvenRobbie</string>
 	<string name="general">General</string>
 	<string name="language">Language</string>
 	<string name="language_description">Change the app language</string>
@@ -216,19 +216,7 @@
 	<string name="flashlight_long_blink">Long Blink</string>
 	<string name="flashlight_rapid_blink">Rapid Blink</string>
 
-	<!-- Upgrade Dialog -->
-	<string name="upgrade_to_pro">Upgrade to Pro</string>
-	<string name="upgrade_to_pro_description">Unlock all premium features and support the developer.</string>
-	<string name="feature_auto_start">Auto start on boot</string>
-	<string name="feature_sensitivity">Advanced sensitivity settings</string>
-	<string name="feature_delay">Custom activation delay</string>
-	<string name="feature_schedules">DND, Sound, &amp; Vibration schedules</string>
-	<string name="feature_custom_sounds">Custom sounds from files</string>
-	<string name="feature_proximity">Proximity sensor detection</string>
-	<string name="feature_telegram">Telegram Support Group</string>
-	<string name="get_pro">Get Flip 2 DND Pro</string>
-	<string name="maybe_later">Maybe Later</string>
-	<string name="pro">PRO</string>
+
 	<string name="day_sunday_short">S</string>
 	<string name="day_monday_short">M</string>
 	<string name="day_tuesday_short">T</string>
@@ -279,16 +267,12 @@
 	<string name="check_again">Check Again</string>
 	<string name="collapse">Collapse</string>
 	<string name="expand">Expand</string>
-	<string name="support_dialog_title">Support the Developer</string>
-	<string name="support_dialog_message">Thank you for using Flip 2 DND! Your support helps me keep the app free and continuously improving. If you find the app useful, please consider supporting my work.</string>
-	<string name="patreon">Patreon</string>
-	<string name="crypto">Crypto</string>
+
 	<string name="check_for_updates">Check for Updates</string>
 	<string name="check_for_updates_description">Check for the latest version of Flip 2 DND</string>
-	<string name="update_check_dialog_title">Check for Updates</string>
-	<string name="update_check_dialog_message">Where did you purchase Flip 2 DND Pro? We will redirect you to the respective platform to check for updates.</string>
+
 	<string name="feedback_with_flashlight_on">Feedback even if Flashlight is ON</string>
-	<string name="gumroad">Gumroad</string>
+
 
 	<string name="cancel">Cancel</string>
 	<string name="turn_screen_off">Turn Screen Off</string>

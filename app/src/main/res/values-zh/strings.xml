@@ -44,7 +44,7 @@
     <string name="adb_command_description">要启用自动省电模式切换，请使用以下 ADB 命令授予 WRITE_SECURE_SETTINGS 权限：</string>
     <string name="copy_command">复制命令</string>
     <string name="close">关闭</string>
-    <string name="adb_command_text">adb shell pm grant dev.robin.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_command_text">adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="dnd_on_sound_description">开启勿扰模式时播放的声音</string>
     <string name="dnd_off_sound_description">关闭勿扰模式时播放的声音</string>
     <string name="use_custom_volume_description">为勿扰音效使用自定义音量</string>
@@ -58,8 +58,8 @@
     <string name="join_telegram">加入 Telegram</string>
     <string name="join_telegram_description">加入我们的 Telegram 社区（需要 Pro）</string>
     <string name="support_developer">支持开发者</string>
-    <string name="support_developer_description">帮助保持应用免费并不断改进</string>
-    <string name="your_support_helps">您的支持有助于保持此应用免费并持续改进！</string>
+    <string name="support_developer_description">帮助保持应用不断改进</string>
+    <string name="your_support_helps">您的支持有助于此应用持续改进！</string>
     <string name="thanks_for_support">感谢您的慷慨支持！ ❤️</string>
     <string name="general">常规</string>
     <string name="language">语言</string>
@@ -169,19 +169,7 @@
     <string name="flashlight_long_blink">长闪烁</string>
     <string name="flashlight_rapid_blink">快速闪烁</string>
 
-    <!-- Upgrade Dialog -->
-    <string name="upgrade_to_pro">升级到 Pro</string>
-    <string name="upgrade_to_pro_description">解锁所有高级功能并支持开发者。</string>
-    <string name="feature_auto_start">开机自启</string>
-    <string name="feature_sensitivity">高级灵敏度设置</string>
-    <string name="feature_delay">自定义激活延迟</string>
-    <string name="feature_schedules">勿扰、音效和振动计划</string>
-    <string name="feature_custom_sounds">来自文件的自定义音效</string>
-    <string name="feature_telegram">Telegram 支持小组</string>
-    <string name="get_pro">获取 Flip 2 DND Pro</string>
-    <string name="maybe_later">稍后再说</string>
-    <string name="pro">PRO</string>
-    <string name="day_sunday_short">日</string>
+<string name="day_sunday_short">日</string>
     <string name="day_monday_short">一</string>
     <string name="day_tuesday_short">二</string>
     <string name="day_wednesday_short">三</string>
@@ -236,17 +224,10 @@
     <string name="permission_notification">通知</string>
     <string name="grant">授予</string>
     <string name="check_again">重新检查</string>
-    <string name="support_dialog_title">支持开发者</string>
-    <string name="support_dialog_message">感谢使用 Flip 2 DND！您的支持有助于让应用保持免费并持续改进。如果您觉得应用有用，请考虑支持我的工作。</string>
-    <string name="patreon">Patreon</string>
-    <string name="crypto">加密货币</string>
-    <string name="check_for_updates">检查更新</string>
-    <string name="check_for_updates_description">检查 Flip 2 DND 的最新版本（需要 Pro）</string>
-    <string name="update_check_dialog_title">检查更新</string>
-    <string name="update_check_dialog_message">您在哪里购买了 Flip 2 DND Pro？我们将把您引导到相应平台以检查更新。</string>
-    <string name="feedback_with_flashlight_on">即使手电筒开启也反馈</string>
-    <string name="gumroad">Gumroad</string>
-    <string name="flashlight_schedule">手电筒计划</string>
+<string name="check_for_updates">检查更新</string>
+    <string name="check_for_updates_description">检查 Flip 2 DND 的最新版本</string>
+<string name="feedback_with_flashlight_on">即使手电筒开启也反馈</string>
+<string name="flashlight_schedule">手电筒计划</string>
     <string name="flashlight_schedule_description">仅在这些时间段内闪烁。</string>
     <string name="flashlight_intensity">手电筒亮度</string>
     <string name="flashlight_intensity_description">调整手电筒反馈的亮度（仅限 Android 13+）</string>
@@ -254,8 +235,7 @@
     <string name="high_sensitivity_schedule_description">仅在这些时间段启用高灵敏度。</string>
     <string name="whats_new">新功能</string>
     <string name="ramadan_coupon">RAMADANKARIM</string>
-    <string name="feature_proximity">距离传感器检测</string>
-    <string name="proximity_detection">距离检测</string>
+<string name="proximity_detection">距离检测</string>
     <string name="proximity_detection_description">仅在距离传感器也被遮挡时启用勿扰（需要 Pro）</string>
     <string name="cancel">取消</string>
     <!-- Activation Modes -->

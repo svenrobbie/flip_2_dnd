@@ -43,7 +43,7 @@
     <string name="adb_command_description">Otomatik Pil Tasarrufu geçişini etkinleştirmek için lütfen aşağıdaki ADB komutunu kullanarak WRITE_SECURE_SETTINGS iznini verin:</string>
     <string name="copy_command">Komutu Kopyala</string>
     <string name="close">Kapat</string>
-    <string name="adb_command_text">adb shell pm grant dev.robin.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_command_text">adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="dnd_on_sound_description">DND etkinleştirildiğinde çalacak ses</string>
     <string name="dnd_off_sound_description">DND devre dışı bırakıldığında çalacak ses</string>
     <string name="use_custom_volume_description">DND sesleri için özel ses seviyesi kullan</string>
@@ -57,8 +57,8 @@
     <string name="join_telegram">"Telegram'a Katıl"</string>
     <string name="join_telegram_description">Telegram Topluluğumuza katılın (Pro gerektirir)</string>
     <string name="support_developer">Geliştiriciyi Destekle</string>
-    <string name="support_developer_description">Uygulamanın ücretsiz kalmasına ve gelişmesine yardımcı olun</string>
-    <string name="your_support_helps">Desteğiniz bu uygulamanın ücretsiz kalmasına ve sürekli gelişmesine yardımcı olur!</string>
+    <string name="support_developer_description">Uygulamanın gelişmesine yardımcı olun</string>
+    <string name="your_support_helps">Desteğiniz bu uygulamanın sürekli gelişmesine yardımcı olur!</string>
     <string name="thanks_for_support">Cömert desteğiniz için teşekkür ederiz! ❤️</string>
     <string name="general">Genel</string>
     <string name="language">Dil</string>
@@ -169,19 +169,7 @@
     <string name="flashlight_long_blink">Uzun Göz Kırpma</string>
     <string name="flashlight_rapid_blink">Hızlı Göz Kırpma</string>
 
-    <!-- Upgrade Dialog -->
-    <string name="upgrade_to_pro">"Pro'ya Yükselt"</string>
-    <string name="upgrade_to_pro_description">Tüm premium özellikleri açın ve geliştiriciyi destekleyin.</string>
-    <string name="feature_auto_start">Başlangıçta otomatik başlatma</string>
-    <string name="feature_sensitivity">Gelişmiş hassasiyet ayarları</string>
-    <string name="feature_delay">Özel aktivasyon gecikmesi</string>
-    <string name="feature_schedules">DND, Ses ve Titreşim programları</string>
-    <string name="feature_custom_sounds">Dosyalardan özel sesler</string>
-    <string name="feature_telegram">Telegram Destek Grubu</string>
-    <string name="get_pro">Flip 2 DND Pro Al</string>
-    <string name="maybe_later">Belki Sonra</string>
-    <string name="pro">PRO</string>
-    <string name="day_sunday_short">Pz</string>
+<string name="day_sunday_short">Pz</string>
     <string name="day_monday_short">Pt</string>
     <string name="day_tuesday_short">Sa</string>
     <string name="day_wednesday_short">Ça</string>
@@ -260,17 +248,10 @@
     <string name="permission_notification">Bildirimler</string>
     <string name="grant">İzin ver</string>
     <string name="check_again">Tekrar kontrol et</string>
-    <string name="support_dialog_title">Geliştiriciyi destekle</string>
-    <string name="support_dialog_message">Flip 2 DND kullandığınız için teşekkürler! Desteğiniz uygulamayı ücretsiz ve sürekli gelişen tutmamıza yardımcı olur. Uygulamayı faydalı bulursanız lütfen desteği düşünün.</string>
-    <string name="patreon">Patreon</string>
-    <string name="crypto">Kripto</string>
-    <string name="check_for_updates">Güncellemeleri kontrol et</string>
-    <string name="check_for_updates_description">Flip 2 DND nin en son sürümünü kontrol et (Pro gerekir)</string>
-    <string name="update_check_dialog_title">Güncellemeleri kontrol et</string>
-    <string name="update_check_dialog_message">Flip 2 DND Pro yu nereden aldınız? Güncellemeleri kontrol etmek için ilgili platforma yönlendireceğiz.</string>
-    <string name="feedback_with_flashlight_on">Fener açıkken bile geri bildirim</string>
-    <string name="gumroad">Gumroad</string>
-    <string name="feedback">Geri bildirim</string>
+<string name="check_for_updates">Güncellemeleri kontrol et</string>
+    <string name="check_for_updates_description">Flip 2 DND nin en son sürümünü kontrol et</string>
+<string name="feedback_with_flashlight_on">Fener açıkken bile geri bildirim</string>
+<string name="feedback">Geri bildirim</string>
     <string name="flashlight_schedule">Fener programı</string>
     <string name="flashlight_schedule_description">Sadece bu saatlerde yanıp söner.</string>
     <string name="flashlight_intensity">Fener parlaklığı</string>
@@ -279,8 +260,7 @@
     <string name="high_sensitivity_schedule_description">Yüksek hassasiyeti sadece bu saatlerde etkinleştir.</string>
     <string name="whats_new">Yenilikler</string>
     <string name="ramadan_coupon">RAMADANKARIM</string>
-    <string name="feature_proximity">Yakınlık sensörü algılama</string>
-    <string name="proximity_detection">Yakınlık algılama</string>
+<string name="proximity_detection">Yakınlık algılama</string>
     <string name="proximity_detection_description">Yakınlık sensörü de kapalıysa yalnızca DND yi etkinleştir (Pro gerekir)</string>
     <string name="cancel">İptal</string>
     <string name="turn_screen_off">Ekranı kapat</string>

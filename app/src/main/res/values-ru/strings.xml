@@ -43,7 +43,7 @@
     <string name="adb_command_description">Чтобы включить автоматическое переключение режима энергосбережения, предоставьте разрешение WRITE_SECURE_SETTINGS с помощью следующей команды ADB:</string>
     <string name="copy_command">Копировать команду</string>
     <string name="close">Закрыть</string>
-    <string name="adb_command_text">adb shell pm grant dev.robin.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_command_text">adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
 	<string name="dnd_on_sound_description">Звук при включении DND</string>
 	<string name="dnd_off_sound_description">Звук при выключении DND</string>
 	<string name="use_custom_volume_description">Использовать пользовательский уровень громкости для звуков DND</string>
@@ -57,8 +57,8 @@
 	<string name="join_telegram">Присоединиться к Telegram</string>
 	<string name="join_telegram_description">Присоединяйтесь к нашему сообществу в Telegram (требуется Pro)</string>
 	<string name="support_developer">Поддержите разработчика</string>
-	<string name="support_developer_description">Помогите сохранить приложение бесплатным и улучшать его</string>
-	<string name="your_support_helps">Ваша поддержка помогает сохранять это приложение бесплатным и постоянно улучшать его!</string>
+	<string name="support_developer_description">Помогите сохранить приложение улучшающимся</string>
+	<string name="your_support_helps">Ваша поддержка помогает сохранять это приложение постоянно улучшающимся!</string>
 	<string name="thanks_for_support">Спасибо за вашу щедрую поддержку! ❤️</string>
 	<string name="general">Общие</string>
 	<string name="language">Язык</string>
@@ -168,19 +168,7 @@
     <string name="flashlight_long_blink">Длинное мигание</string>
     <string name="flashlight_rapid_blink">Быстрое мигание</string>
 
-    <!-- Upgrade Dialog -->
-    <string name="upgrade_to_pro">Перейти на Pro</string>
-    <string name="upgrade_to_pro_description">Разблокируйте все премиум-функции и поддержите разработчика.</string>
-    <string name="feature_auto_start">Автозапуск при загрузке</string>
-    <string name="feature_sensitivity">Расширенные настройки чувствительности</string>
-    <string name="feature_delay">Своя задержка активации</string>
-    <string name="feature_schedules">Расписания DND, звука и вибрации</string>
-    <string name="feature_custom_sounds">Свои звуки из файлов</string>
-    <string name="feature_telegram">Группа поддержки в Telegram</string>
-    <string name="get_pro">Получить Flip 2 DND Pro</string>
-    <string name="maybe_later">Может позже</string>
-    <string name="pro">PRO</string>
-    <string name="day_sunday_short">Вс</string>
+<string name="day_sunday_short">Вс</string>
     <string name="day_monday_short">Пн</string>
     <string name="day_tuesday_short">Вт</string>
     <string name="day_wednesday_short">Ср</string>
@@ -260,17 +248,10 @@
     <string name="permission_notification">Уведомления</string>
     <string name="grant">Предоставить</string>
     <string name="check_again">Проверить снова</string>
-    <string name="support_dialog_title">Поддержать разработчика</string>
-    <string name="support_dialog_message">Спасибо за использование Flip 2 DND! Ваша поддержка помогает сохранять приложение бесплатным и постоянно улучшать его. Если приложение полезно, рассмотрите возможность поддержки.</string>
-    <string name="patreon">Patreon</string>
-    <string name="crypto">Крипто</string>
-    <string name="check_for_updates">Проверить обновления</string>
-    <string name="check_for_updates_description">Проверить последнюю версию Flip 2 DND (требуется Pro)</string>
-    <string name="update_check_dialog_title">Проверка обновлений</string>
-    <string name="update_check_dialog_message">Где вы приобрели Flip 2 DND Pro? Мы направим вас на соответствующую платформу для проверки обновлений.</string>
-    <string name="feedback_with_flashlight_on">Обратная связь даже при включенном фонарике</string>
-    <string name="gumroad">Gumroad</string>
-    <string name="feedback">Обратная связь</string>
+<string name="check_for_updates">Проверить обновления</string>
+    <string name="check_for_updates_description">Проверить последнюю версию Flip 2 DND</string>
+<string name="feedback_with_flashlight_on">Обратная связь даже при включенном фонарике</string>
+<string name="feedback">Обратная связь</string>
     <string name="flashlight_schedule">Расписание фонарика</string>
     <string name="flashlight_schedule_description">Мигание только в эти промежутки времени.</string>
     <string name="flashlight_intensity">Яркость фонарика</string>
@@ -279,8 +260,7 @@
     <string name="high_sensitivity_schedule_description">Включать высокую чувствительность только в указанные промежутки.</string>
     <string name="whats_new">Что нового</string>
     <string name="ramadan_coupon">RAMADANKARIM</string>
-    <string name="feature_proximity">Обнаружение датчиком приближения</string>
-    <string name="proximity_detection">Обнаружение приближения</string>
+<string name="proximity_detection">Обнаружение приближения</string>
     <string name="proximity_detection_description">Включать DND только если датчик приближения также закрыт (требуется Pro)</string>
     <string name="cancel">Отмена</string>
     <string name="turn_screen_off">Выключить экран</string>

@@ -44,7 +44,7 @@
     <string name="adb_command_description">خودکار بیٹری سیور ٹوگلنگ فعال کرنے کے لیے، براہ کرم درج ذیل ADB کمانڈ کا استعمال کرتے ہوئے WRITE_SECURE_SETTINGS اجازت دیں:</string>
     <string name="copy_command">کمانڈ کاپی کریں</string>
     <string name="close">بند کریں</string>
-    <string name="adb_command_text">adb shell pm grant dev.robin.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="adb_command_text">adb shell pm grant dev.svenrobbie.flip_2_dnd android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="dnd_on_sound_description">DND فعال ہونے پر بجنے والی آواز</string>
     <string name="dnd_off_sound_description">DND بند ہونے پر بجنے والی آواز</string>
     <string name="use_custom_volume_description">DND آوازوں کے لیے اپنی مرضی کی آواز کی مقدار استعمال کریں</string>
@@ -58,8 +58,8 @@
     <string name="join_telegram">ٹیلیگرام میں شامل ہوں</string>
     <string name="join_telegram_description">ہماری ٹیلیگرام کمیونٹی میں شامل ہوں (پرو ورژن درکار ہے)</string>
     <string name="support_developer">ڈیولپر کی مدد کریں</string>
-    <string name="support_developer_description">ایپ کو مفت اور بہتر رکھنے میں مدد کریں</string>
-    <string name="your_support_helps">آپ کا تعاون اس ایپ کو مفت رکھنے اور اسے مسلسل بہتر بنانے میں مدد کرتا ہے!</string>
+    <string name="support_developer_description">ایپ کو بہتر رکھنے میں مدد کریں</string>
+    <string name="your_support_helps">آپ کا تعاون اس ایپ کو مسلسل بہتر بنانے میں مدد کرتا ہے!</string>
     <string name="thanks_for_support">آپ کے فراخ دلانہ تعاون کا شکریہ! ❤️</string>
     <string name="general">عمومی</string>
     <string name="language">زبان</string>
@@ -169,19 +169,7 @@
     <string name="flashlight_long_blink">لانگ بلنک</string>
     <string name="flashlight_rapid_blink">ریپڈ بلنک</string>
 
-    <!-- Upgrade Dialog -->
-    <string name="upgrade_to_pro">پرو میں اپ گریڈ کریں</string>
-    <string name="upgrade_to_pro_description">تمام پریمیم خصوصیات تک رسائی حاصل کریں اور ڈیولپر کی مدد کریں</string>
-    <string name="feature_auto_start">بوٹ پر خودکار آغاز</string>
-    <string name="feature_sensitivity">اعلی درجے کی حساسیت کی ترتیبات</string>
-    <string name="feature_delay">فعال ہونے میں اپنی مرضی کی تاخیر</string>
-    <string name="feature_schedules">DND، آواز اور وائبریشن کے شیڈولز</string>
-    <string name="feature_custom_sounds">فائلوں سے اپنی مرضی کی آوازیں</string>
-    <string name="feature_telegram">ٹیلیگرام سپورٹ گروپ</string>
-    <string name="get_pro">Flip 2 DND پرو حاصل کریں</string>
-    <string name="maybe_later">شاید بعد میں</string>
-    <string name="pro">PRO</string>
-    <string name="day_sunday_short">ا</string>
+<string name="day_sunday_short">ا</string>
     <string name="day_monday_short">پ</string>
     <string name="day_tuesday_short">م</string>
     <string name="day_wednesday_short">ب</string>
@@ -236,17 +224,10 @@
     <string name="permission_notification">نوٹیفیکیشنز</string>
     <string name="grant">اجازت دیں</string>
     <string name="check_again">دوبارہ چیک کریں</string>
-    <string name="support_dialog_title">ڈیولپر کی مدد کریں</string>
-    <string name="support_dialog_message">Flip 2 DND استعمال کرنے کا شکریہ! آپ کی مدد مجھے ایپ کو مفت رکھنے اور مسلسل بہتر بنانے میں مدد کرتی ہے۔ اگر آپ کو ایپ مفید لگتی ہے، تو براہ کرم میری مدد پر غور کریں۔</string>
-    <string name="patreon">Patreon</string>
-    <string name="crypto">کرپٹو</string>
-    <string name="check_for_updates">اپڈیٹس چیک کریں</string>
-    <string name="check_for_updates_description">Flip 2 DND کے تازہ ترین ورژن کی جانچ کریں (پرو درکار ہے)</string>
-    <string name="update_check_dialog_title">اپڈیٹس چیک کریں</string>
-    <string name="update_check_dialog_message">آپ نے Flip 2 DND Pro کہاں سے خریدا؟ ہم اپڈیٹس چیک کرنے کے لیے آپ کو متعلقہ پلیٹ فارم پر بھیجیں گے۔</string>
-    <string name="feedback_with_flashlight_on">فلیش لائٹ آن ہونے پر بھی فیڈ بیک دیں</string>
-    <string name="gumroad">Gumroad</string>
-    <string name="flashlight_schedule">فلیش لائٹ شیڈول</string>
+<string name="check_for_updates">اپڈیٹس چیک کریں</string>
+    <string name="check_for_updates_description">Flip 2 DND کے تازہ ترین ورژن کی جانچ کریں</string>
+<string name="feedback_with_flashlight_on">فلیش لائٹ آن ہونے پر بھی فیڈ بیک دیں</string>
+<string name="flashlight_schedule">فلیش لائٹ شیڈول</string>
     <string name="flashlight_schedule_description">صرف ان اوقات میں فلیش کریں۔</string>
     <string name="flashlight_intensity">فلیش لائٹ کی چمک</string>
     <string name="flashlight_intensity_description">فلیش لائٹ فیڈ بیک کی چمک ایڈجسٹ کریں (صرف Android 13+)</string>
@@ -254,8 +235,7 @@
     <string name="high_sensitivity_schedule_description">صرف ان اوقات میں اعلی حساسیت فعال کریں۔</string>
     <string name="whats_new">نیا کیا ہے</string>
     <string name="ramadan_coupon">RAMADANKARIM</string>
-    <string name="feature_proximity">قربت سینسر کی تشخیص</string>
-    <string name="proximity_detection">قربت کی تشخیص</string>
+<string name="proximity_detection">قربت کی تشخیص</string>
     <string name="proximity_detection_description">صرف اس صورت میں DND فعال کریں جب قربت سینسر بھی کور ہو (پرو درکار ہے)</string>
     <string name="cancel">منسوخ کریں</string>
     <!-- Activation Modes -->

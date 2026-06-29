@@ -1,4 +1,4 @@
-package dev.robin.flip_2_dnd.presentation.changelog
+package dev.svenrobbie.flip_2_dnd.presentation.changelog
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
