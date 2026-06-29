@@ -1,0 +1,15 @@
+package dev.svenrobbie.flip_2_dnd.domain.usecase
+
+import dev.svenrobbie.flip_2_dnd.core.PhoneOrientation
+import dev.svenrobbie.flip_2_dnd.core.OrientationRepository
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+
+class GetOrientationUseCase @Inject constructor(
+    private val orientationRepository: OrientationRepository
+) {
+    suspend operator fun invoke(): Flow<PhoneOrientation> {
+        orientationRepository.startMonitoring()
+        return orientationRepository.getOrientation()
+    }
+}
