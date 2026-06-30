@@ -82,6 +82,7 @@ fun OnboardingScreen(
             dndGranted = isNotificationPolicyAccessGranted(context)
             batteryGranted = isBatteryOptimizationDisabled(context)
             accessibilityGranted = TurnScreenOffService.isAccessibilityPermissionGranted(context)
+            if (dndGranted && batteryGranted && accessibilityGranted) break
             delay(500)
         }
     }
@@ -89,12 +90,16 @@ fun OnboardingScreen(
     val dndPermissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult(),
     ) {
-        // State updates via polling
+        dndGranted = isNotificationPolicyAccessGranted(context)
     }
 
     val notificationPermissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
     ) { isGranted ->
+        if (isGranted) {
+            dndGranted = isNotificationPolicyAccessGranted(context)
+            batteryGranted = isBatteryOptimizationDisabled(context)
+        }
         // State updates via polling
     }
 

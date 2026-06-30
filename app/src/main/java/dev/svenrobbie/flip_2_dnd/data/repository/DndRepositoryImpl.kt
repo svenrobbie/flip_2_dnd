@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -192,7 +193,7 @@ class DndRepositoryImpl @Inject constructor(
 //            - Raw Filter: $currentFilter
 //        """.trimIndent())
 
-	fun cleanup() {
+	override fun onCleared() {
 		try {
 			scope.cancel()
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

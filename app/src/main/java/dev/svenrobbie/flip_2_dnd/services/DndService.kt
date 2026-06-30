@@ -19,6 +19,7 @@ import dev.svenrobbie.flip_2_dnd.core.FlashlightPattern
 import dev.svenrobbie.flip_2_dnd.core.ScheduleManager
 import dev.svenrobbie.flip_2_dnd.core.SoundController
 import dev.svenrobbie.flip_2_dnd.core.VibrationPattern
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

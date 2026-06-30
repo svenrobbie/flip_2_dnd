@@ -166,6 +166,8 @@ fun SettingsContent(
     val customVolume by viewModel.customVolume.collectAsState()
     val useCustomVibration by viewModel.useCustomVibration.collectAsState()
     val customVibrationStrength by viewModel.customVibrationStrength.collectAsState()
+    val dndOnVibration by viewModel.dndOnVibration.collectAsState()
+    val dndOffVibration by viewModel.dndOffVibration.collectAsState()
     val hasSecureSettingsPermission by viewModel.hasSecureSettingsPermission.collectAsState()
     val headphoneDetectionEnabled by viewModel.headphoneDetectionEnabled.collectAsState()
     val proximityDetectionEnabled by viewModel.proximityDetectionEnabled.collectAsState()
@@ -990,9 +992,7 @@ fun SettingsContent(
                             title = stringResource(id = R.string.dnd_on_vibration_pattern),
                             description =
                                 stringResource(
-                                    viewModel.dndOnVibration
-                                        .collectAsState()
-                                        .value.stringResId,
+                                    dndOnVibration.stringResId,
                                 ),
                             trailingIcon = {
                                 Icon(Icons.Default.ArrowDropDown, stringResource(R.string.select_vibration_pattern))
@@ -1010,7 +1010,7 @@ fun SettingsContent(
                                         SettingsClickableItem(
                                             title = stringResource(pattern.stringResId),
                                             trailingIcon = {
-                                                if (pattern == viewModel.dndOnVibration.collectAsState().value) {
+                                                if (pattern == dndOnVibration) {
                                                     Icon(
                                                         painter = painterResource(id = R.drawable.ic_radio_button_checked),
                                                         contentDescription = stringResource(R.string.selected),
@@ -1040,9 +1040,7 @@ fun SettingsContent(
                             title = stringResource(id = R.string.dnd_off_vibration_pattern),
                             description =
                                 stringResource(
-                                    viewModel.dndOffVibration
-                                        .collectAsState()
-                                        .value.stringResId,
+                                    dndOffVibration.stringResId,
                                 ),
                             trailingIcon = {
                                 Icon(Icons.Default.ArrowDropDown, stringResource(R.string.select_vibration_pattern))
@@ -1060,7 +1058,7 @@ fun SettingsContent(
                                         SettingsClickableItem(
                                             title = stringResource(pattern.stringResId),
                                             trailingIcon = {
-                                                if (pattern == viewModel.dndOffVibration.collectAsState().value) {
+                                                if (pattern == dndOffVibration) {
                                                     Icon(
                                                         painter = painterResource(id = R.drawable.ic_radio_button_checked),
                                                         contentDescription = stringResource(R.string.selected),

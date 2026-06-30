@@ -32,12 +32,6 @@ class SensorService(
   private val _orientation = MutableStateFlow(PhoneOrientation.FACE_UP)
   val orientation: StateFlow<PhoneOrientation> = _orientation
 
-  private val _accelerometerData = MutableStateFlow(FloatArray(3) { 0f })
-  val accelerometerData: StateFlow<FloatArray> = _accelerometerData
-
-  private val _gyroscopeData = MutableStateFlow(FloatArray(3) { 0f })
-  val gyroscopeData: StateFlow<FloatArray> = _gyroscopeData
-
   private var lastAccelReading = FloatArray(3)
   private var lastGyroReading = FloatArray(3)
   private var filteredAccel = FloatArray(3)
@@ -46,11 +40,17 @@ class SensorService(
   @Volatile private var _isRegistered = false
   val isRegistered: Boolean get() = _isRegistered
   @Volatile private var sensitivity = 0.5f
+  private var cachedThresholds: SensorManagerPro.Thresholds? = null
 
   private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
   init {
-    scope.launch { settingsRepository.getFlipSensitivity().collect { sensitivity = it } }
+    scope.launch {
+      settingsRepository.getFlipSensitivity().collect {
+        sensitivity = it
+        cachedThresholds = null
+      }
+    }
   }
 
   fun cancel() {
@@ -65,14 +65,12 @@ class SensorService(
           for (i in 0..2) {
             filteredAccel[i] = alpha * currentAccel[i] + (1 - alpha) * filteredAccel[i]
           }
-          lastAccelReading = filteredAccel.clone()
-          _accelerometerData.value = filteredAccel.clone()
+          filteredAccel.copyInto(lastAccelReading)
           processOrientation()
         }
 
         Sensor.TYPE_GYROSCOPE -> {
-          lastGyroReading = event.values.clone()
-          _gyroscopeData.value = event.values.clone()
+          event.values.copyInto(lastGyroReading)
 //					Log.d(TAG, "Gyroscope data: ${lastGyroReading.contentToString()}")
         }
       }
@@ -142,7 +140,7 @@ class SensorService(
     val y = lastAccelReading[1]
     val z = lastAccelReading[2]
 
-    val thresholds = sensorManagerPro.getOrientationThresholds(sensitivity)
+    val thresholds = cachedThresholds ?: sensorManagerPro.getOrientationThresholds(sensitivity).also { cachedThresholds = it }
 
     // Check if the phone is relatively stable (not in motion)
     val isStable = abs(lastGyroReading[0]) < thresholds.gyro &&
