@@ -166,7 +166,11 @@ class FlipDetectorService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.d(TAG, "onStartCommand: Starting FlipDetectorService")
         val notification = createServiceNotification()
-        startForeground(SERVICE_NOTIFICATION_ID, notification)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            startForeground(SERVICE_NOTIFICATION_ID, notification, android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
+        } else {
+            startForeground(SERVICE_NOTIFICATION_ID, notification)
+        }
         return START_STICKY
     }
 
@@ -455,6 +459,8 @@ class FlipDetectorService : Service() {
             if (::dndService.isInitialized) {
                 dndService.cleanup()
             }
+            
+            dndRepository.cleanup()
             
             // Stop sensor monitoring
             sensorService.stopMonitoring()

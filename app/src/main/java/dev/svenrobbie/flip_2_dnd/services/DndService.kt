@@ -21,6 +21,7 @@ import dev.svenrobbie.flip_2_dnd.core.SoundController
 import dev.svenrobbie.flip_2_dnd.core.VibrationPattern
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -49,6 +50,8 @@ class DndService(
 		context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 	}
 	private val soundService = SoundService(context, settingsRepository, soundController)
+
+	private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
 	private val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
 	private val cameraId = try {
@@ -80,7 +83,7 @@ class DndService(
 	}
 
 	init {
-		CoroutineScope(Dispatchers.Main).launch {
+		scope.launch {
 			updateDndStatus()
 		}
 		try {
@@ -92,6 +95,7 @@ class DndService(
 
 	fun cleanup() {
 		try {
+			scope.cancel()
 			cameraManager.unregisterTorchCallback(torchCallback)
 		} catch (e: Exception) {
 			Log.e(TAG, "Error unregistering torch callback: ${e.message}")

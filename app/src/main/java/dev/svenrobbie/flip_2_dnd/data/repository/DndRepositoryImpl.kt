@@ -15,14 +15,13 @@ import dev.svenrobbie.flip_2_dnd.core.HistoryRepository
 import dev.svenrobbie.flip_2_dnd.core.SettingsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -41,16 +40,16 @@ class DndRepositoryImpl @Inject constructor(
 	private val _isActivated = MutableStateFlow(false)
 	private val _dndMode = MutableStateFlow(R.string.dnd_mode_all)
 
-	private var pollingFallbackJob: Job? = null
+	private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
 	private val dndStateReceiver = object : BroadcastReceiver() {
 		override fun onReceive(context: Context?, intent: Intent?) {
-			updateDndState()
+			scope.launch { updateDndState() }
 		}
 	}
 
 	init {
-		updateDndState()
+		scope.launch { updateDndState() }
 		startDndStateMonitoring()
 	}
 
@@ -59,10 +58,10 @@ class DndRepositoryImpl @Inject constructor(
 			val filter = IntentFilter(NotificationManager.ACTION_INTERRUPTION_FILTER_CHANGED)
 			context.registerReceiver(dndStateReceiver, filter)
 		} else {
-			pollingFallbackJob = CoroutineScope(Dispatchers.Default).launch {
+			scope.launch {
 				while (isActive) {
 					updateDndState()
-					delay(30_000) // Check every 30 seconds as fallback for older APIs
+					delay(30_000)
 				}
 			}
 		}
@@ -139,11 +138,11 @@ class DndRepositoryImpl @Inject constructor(
 		setActivated(!currentState)
 	}
 
-	private fun updateDndState() {
+	private suspend fun updateDndState() {
 		val currentFilter = notificationManager.currentInterruptionFilter
 		val isDndActive = currentFilter != NotificationManager.INTERRUPTION_FILTER_ALL
 		
-		val activationMode = runBlocking { settingsRepository.getActivationMode().first() }
+		val activationMode = settingsRepository.getActivationMode().first()
 
 		val dndModeText = if (activationMode == dev.svenrobbie.flip_2_dnd.core.ActivationMode.DND) {
 			when (currentFilter) {
@@ -155,7 +154,7 @@ class DndRepositoryImpl @Inject constructor(
 			}
 		} else {
 			if (_isActivated.value) {
-				val selectedRinger = runBlocking { settingsRepository.getRingerMode().first() }
+				val selectedRinger = settingsRepository.getRingerMode().first()
 				when (selectedRinger) {
 					dev.svenrobbie.flip_2_dnd.core.RingerMode.SILENT -> R.string.status_ringer_silent
 					dev.svenrobbie.flip_2_dnd.core.RingerMode.VIBRATE -> R.string.status_ringer_vibrate
@@ -193,12 +192,11 @@ class DndRepositoryImpl @Inject constructor(
 //            - Raw Filter: $currentFilter
 //        """.trimIndent())
 
-	override fun onCleared() {
+	fun cleanup() {
 		try {
+			scope.cancel()
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 				context.unregisterReceiver(dndStateReceiver)
-			} else {
-				pollingFallbackJob?.cancel()
 			}
 		} catch (e: Exception) {
 			Log.e("DndRepository", "Error during cleanup: ${e.message}")

@@ -42,10 +42,10 @@ class SensorService(
   private var lastGyroReading = FloatArray(3)
   private var filteredAccel = FloatArray(3)
   private val alpha = 0.15f
-  private var isProcessing = false
-  private var _isRegistered = false
+  @Volatile private var isProcessing = false
+  @Volatile private var _isRegistered = false
   val isRegistered: Boolean get() = _isRegistered
-  private var sensitivity = 0.5f
+  @Volatile private var sensitivity = 0.5f
 
   private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
